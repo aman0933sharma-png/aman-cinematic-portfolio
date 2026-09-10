@@ -1,1 +1,287 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Aman Sharma</title><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;1,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet"/><style>body{margin:0;background:#07080d;color:#f3eee4;font-family:Outfit,sans-serif}#scene{position:fixed;inset:0;z-index:0}main{position:relative;z-index:5;padding:18vh 7vw}h1{font-family:Cormorant Garamond,serif;font-size:clamp(48px,9vw,110px);line-height:.9}em{color:#d4b15f;font-style:italic}a{color:#d4b15f}section{min-height:80vh}</style></head><body><canvas id="scene"></canvas><main><h1>Aman <em>Sharma</em></h1><p>Mechanical Engineer · CATIA Specialist</p><p>If you still see a test page, open the downloaded zip index.html instead.</p></main><script src="https://unpkg.com/three@0.160.1/build/three.min.js"></script><script>if(window.THREE){const r=new THREE.WebGLRenderer({canvas:document.getElementById('scene'),antialias:true});r.setSize(innerWidth,innerHeight);const s=new THREE.Scene();s.background=new THREE.Color(0x07080d);const c=new THREE.PerspectiveCamera(40,innerWidth/innerHeight,0.1,50);c.position.z=5;s.add(new THREE.AmbientLight(0xffffff,.6));const m=new THREE.Mesh(new THREE.TorusKnotGeometry(.7,.18,120,16),new THREE.MeshStandardMaterial({color:0xd4b15f,metalness:.8,roughness:.2}));s.add(m);(function a(){requestAnimationFrame(a);m.rotation.y+=.01;r.render(s,c)})()}</script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aman Sharma — Mechanical Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root{--bg:#07080d;--ink:#f3eee4;--muted:#b8b1a4;--gold:#d4b15f;--line:rgba(212,177,95,.3)}
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:Outfit,sans-serif;background:var(--bg);color:var(--ink);overflow-x:hidden}
+    #scene{position:fixed;inset:0;z-index:0}
+    .veil{position:fixed;inset:0;z-index:1;pointer-events:none;background:radial-gradient(ellipse at 68% 45%,transparent 10%,rgba(7,8,13,.45) 60%,rgba(7,8,13,.88) 100%)}
+    nav{position:fixed;top:22px;left:0;right:0;z-index:20;display:flex;justify-content:space-between;align-items:center;padding:0 6vw}
+    .logo{width:42px;height:42px;display:grid;place-items:center;border:1px solid var(--line);color:var(--gold);text-decoration:none;letter-spacing:.16em;font-family:"Cormorant Garamond",serif}
+    nav a{color:var(--muted);text-decoration:none;font-size:12px;letter-spacing:.16em;text-transform:uppercase;margin-left:18px}
+    nav a:hover{color:var(--ink)}
+    main{position:relative;z-index:5}
+    .panel{min-height:100vh;padding:16vh 7vw 10vh;display:flex;flex-direction:column;justify-content:center}
+    #hero{display:grid;grid-template-columns:1.05fr .95fr;align-items:center;gap:4vw}
+    .eyebrow{color:var(--gold);letter-spacing:.28em;text-transform:uppercase;font-size:11px;margin-bottom:14px}
+    h1,h2,h3{font-family:"Cormorant Garamond",serif;font-weight:600}
+    #hero h1{font-size:clamp(52px,8vw,108px);line-height:.88}
+    #hero h1 em{font-style:italic;color:var(--gold);font-weight:400}
+    .role{margin-top:16px;letter-spacing:.2em;text-transform:uppercase;font-size:12px;color:var(--gold)}
+    .lede{margin-top:18px;max-width:460px;color:var(--muted);line-height:1.7;font-weight:300}
+    .actions{display:flex;gap:12px;margin-top:28px;flex-wrap:wrap}
+    .btn{text-decoration:none;padding:13px 22px;font-size:12px;letter-spacing:.16em;text-transform:uppercase}
+    .gold{background:var(--gold);color:#1a1408}
+    .ghost{border:1px solid var(--line);color:var(--ink)}
+    .hero-photo{justify-self:end;max-width:360px;width:100%}
+    .hero-photo img{width:100%;display:block;border:1px solid var(--line);box-shadow:0 30px 80px rgba(0,0,0,.6);background:#0b0c10}
+    .section-head{margin-bottom:32px}
+    .section-head h2{font-size:clamp(36px,6vw,68px)}
+    .grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+    .card{border:1px solid var(--line);background:rgba(8,9,14,.72);overflow:hidden}
+    .card img{width:100%;height:180px;object-fit:cover;display:block;background:#111}
+    .card .pad{padding:16px 16px 20px}
+    .card h3{font-size:22px;margin-bottom:6px}
+    .card p{color:var(--muted);font-size:14px;line-height:1.5}
+    .about-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:40px}
+    .about-lead{font-size:20px;line-height:1.65;font-weight:300}
+    .facts{list-style:none;display:grid;gap:14px}
+    .facts li{border-top:1px solid var(--line);padding-top:10px}
+    .facts span{display:block;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}
+    .skills{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+    .skills article{border:1px solid var(--line);padding:22px 18px;background:rgba(255,255,255,.03)}
+    .skills h3{font-size:20px;margin-bottom:8px}
+    .skills p{color:var(--muted);font-size:14px;line-height:1.5}
+    .tl{border-left:1px solid var(--gold);padding-left:22px;margin-bottom:22px}
+    .tl b{color:var(--gold);font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:500}
+    .tl h3{font-size:28px;margin:4px 0}
+    .tl p{color:var(--muted)}
+    .contact a{display:block;color:var(--ink);text-decoration:none;font-family:"Cormorant Garamond",serif;font-size:clamp(24px,4vw,40px)}
+    .contact a:hover{color:var(--gold)}
+    .addr{color:var(--muted);margin-top:12px;line-height:1.7}
+    footer{position:relative;z-index:5;padding:28px 7vw 48px;color:var(--muted);font-size:12px;border-top:1px solid var(--line)}
+    #loader{position:fixed;inset:0;z-index:40;background:#000;display:grid;place-items:center;transition:opacity .7s ease,visibility .7s}
+    #loader.go{opacity:0;visibility:hidden}
+    .loader-name{font-family:"Cormorant Garamond",serif;letter-spacing:.2em;font-size:clamp(28px,6vw,56px)}
+    @media(max-width:980px){.grid4,.skills,#hero,.about-grid{grid-template-columns:1fr 1fr}nav .links{display:none}}
+    @media(max-width:640px){.grid4,.skills,#hero{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <div id="loader"><div class="loader-name">AMAN SHARMA</div></div>
+  <canvas id="scene"></canvas>
+  <div class="veil"></div>
+  <nav>
+    <a class="logo" href="#hero">AS</a>
+    <div class="links">
+      <a href="#projects">Projects</a>
+      <a href="#machines">Machines</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+  <main>
+    <section id="hero" class="panel">
+      <div>
+        <p class="eyebrow">Himachal Pradesh · India</p>
+        <h1>Aman<br /><em>Sharma</em></h1>
+        <p class="role">Mechanical Engineer · 3D Projects · CATIA</p>
+        <p class="lede">My 3D portrait, RC car and workshop machines sit in the scene. Scroll to the project models.</p>
+        <div class="actions">
+          <a class="btn gold" href="#projects">3D Projects</a>
+          <a class="btn ghost" href="#machines">Machines</a>
+        </div>
+      </div>
+      <div class="hero-photo">
+        <img src="character.jpg" alt="3D model of Aman Sharma" />
+      </div>
+    </section>
+
+    <section id="projects" class="panel">
+      <div class="section-head">
+        <p class="eyebrow">01 — Projects in 3D</p>
+        <h2>Project models</h2>
+      </div>
+      <div class="grid4">
+        <article class="card">
+          <img src="rc-car.jpg" alt="3D RC motor car" />
+          <div class="pad">
+            <h3>RC Motor Car</h3>
+            <p>College prototype. Chassis, drive motor, fabrication drawings and test logs — shown here as a 3D model.</p>
+          </div>
+        </article>
+        <article class="card">
+          <img src="engine.jpg" alt="3D engine model" />
+          <div class="pad">
+            <h3>Engine study</h3>
+            <p>Four-cylinder block, pistons, crank and flywheel — mechanical design study in 3D.</p>
+          </div>
+        </article>
+        <article class="card">
+          <img src="lathe.jpg" alt="3D lathe model" />
+          <div class="pad">
+            <h3>Lathe setup</h3>
+            <p>Workshop turning machine: bed, headstock, chuck and tailstock.</p>
+          </div>
+        </article>
+        <article class="card">
+          <img src="cnc.jpg" alt="3D CNC mill" />
+          <div class="pad">
+            <h3>CNC mill</h3>
+            <p>From CATIA model to toolpath. Spindle, table and control cabinet.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="machines" class="panel">
+      <div class="section-head">
+        <p class="eyebrow">02 — Shop floor</p>
+        <h2>Machines</h2>
+      </div>
+      <div class="grid4">
+        <article class="card"><img src="lathe.jpg" alt="Lathe" /><div class="pad"><h3>Lathe</h3><p>Turning, facing and threading of shafts.</p></div></article>
+        <article class="card"><img src="cnc.jpg" alt="CNC" /><div class="pad"><h3>CNC milling</h3><p>Computer-controlled cutting from CAD.</p></div></article>
+        <article class="card"><img src="engine.jpg" alt="Engine" /><div class="pad"><h3>IC engine</h3><p>Piston, crank and gold flywheel assembly.</p></div></article>
+        <article class="card"><img src="rc-car.jpg" alt="RC car" /><div class="pad"><h3>RC drive</h3><p>Motor, suspension and chassis of the prototype.</p></div></article>
+      </div>
+    </section>
+
+    <section id="about" class="panel">
+      <div class="section-head"><p class="eyebrow">03 — Profile</p><h2>About me</h2></div>
+      <div class="about-grid">
+        <p class="about-lead">A diligent mechanical engineering graduate tasked with designing, manufacturing and evaluating mechanical devices. Comfortable around machines — from lathe and mill to engines and CAD assemblies.</p>
+        <ul class="facts">
+          <li><span>Location</span>Hamirpur, Himachal Pradesh</li>
+          <li><span>Discipline</span>Mechanical Engineering</li>
+          <li><span>Focus</span>Machines · CAD · Design</li>
+          <li><span>Education</span>B.Tech 2018–2024 · CGC Landran</li>
+          <li><span>Certification</span>CATIA · Parametric Cadtech</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="skills" class="panel">
+      <div class="section-head"><p class="eyebrow">04 — Craft</p><h2>Capabilities</h2></div>
+      <div class="skills">
+        <article><h3>Computer-Aided Design</h3><p>Parametric modelling and production-ready drawings.</p></article>
+        <article><h3>CATIA</h3><p>Certified at Parametric Cadtech Design Centre.</p></article>
+        <article><h3>Mechanical Design</h3><p>Concept through fabrication and evaluation.</p></article>
+        <article><h3>Workshop Tools</h3><p>Hands-on fabrication and prototype testing.</p></article>
+        <article><h3>Project Management</h3><p>Planning and delivery of college builds.</p></article>
+        <article><h3>Leadership</h3><p>Guiding teams with clear communication.</p></article>
+        <article><h3>MS Word &amp; Excel</h3><p>Documentation, reports and structured data.</p></article>
+        <article><h3>Communication</h3><p>Translating technical work for stakeholders.</p></article>
+      </div>
+    </section>
+
+    <section id="contact" class="panel">
+      <div class="section-head"><p class="eyebrow">05 — Connect</p><h2>Let’s build a machine<br />that moves.</h2></div>
+      <div class="contact">
+        <a href="mailto:aman0933sharma@gmail.com">aman0933sharma@gmail.com</a>
+        <a href="tel:+917807129316">+91 78071 29316</a>
+        <p class="addr">V.P.O Samtana Kalan, Tehsil Dhatwal<br />District Hamirpur, Himachal Pradesh 176042</p>
+      </div>
+    </section>
+  </main>
+  <footer>© 2026 Aman Sharma · 3D project models</footer>
+
+  <script src="https://unpkg.com/three@0.160.1/build/three.min.js"></script>
+  <script>
+  (function () {
+    const loaderEl = document.getElementById("loader");
+    const hide = function () { loaderEl.classList.add("go"); };
+    setTimeout(hide, 1600);
+    if (!window.THREE) return;
+
+    const canvas = document.getElementById("scene");
+    const renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
+    renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+    renderer.setSize(innerWidth, innerHeight);
+    renderer.outputColorSpace = THREE.SRGBColorSpace;
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+
+    const scene = new THREE.Scene();
+    scene.fog = new THREE.FogExp2(0x07080d, 0.03);
+    const camera = new THREE.PerspectiveCamera(38, innerWidth / innerHeight, 0.1, 80);
+    camera.position.set(0, 0.2, 7.2);
+
+    scene.add(new THREE.AmbientLight(0xffffff, 0.55));
+    const key = new THREE.PointLight(0xffe2b0, 40, 40); key.position.set(4, 3, 6); scene.add(key);
+    const rim = new THREE.PointLight(0x6a8cff, 16, 30); rim.position.set(-5, 1, 3); scene.add(rim);
+
+    const gold = new THREE.MeshStandardMaterial({ color: 0xd4b15f, metalness: 0.9, roughness: 0.22, emissive: 0x3a2a08, emissiveIntensity: 0.18 });
+    const world = new THREE.Group(); scene.add(world);
+    world.add(Object.assign(new THREE.Mesh(new THREE.TorusGeometry(2.6, 0.012, 10, 80), gold), { rotation: new THREE.Euler(1.15, 0.2, 0) }));
+    world.add(Object.assign(new THREE.Mesh(new THREE.TorusGeometry(3.3, 0.008, 10, 80), gold), { rotation: new THREE.Euler(0.4, 1.0, 0.2) }));
+
+    const loader = new THREE.TextureLoader();
+    function panel(url, w, h) {
+      const g = new THREE.Group();
+      loader.load(url, function (tex) {
+        tex.colorSpace = THREE.SRGBColorSpace;
+        const mesh = new THREE.Mesh(
+          new THREE.PlaneGeometry(w, h),
+          new THREE.MeshStandardMaterial({ map: tex, roughness: 0.4, metalness: 0.05 })
+        );
+        g.add(mesh);
+        const frame = new THREE.Mesh(
+          new THREE.PlaneGeometry(w + 0.06, h + 0.06),
+          new THREE.MeshBasicMaterial({ color: 0xd4b15f, transparent: true, opacity: 0.22 })
+        );
+        frame.position.z = -0.02;
+        g.add(frame);
+      });
+      return g;
+    }
+
+    const me = panel("character.jpg", 2.05, 2.6);
+    me.position.set(1.7, 0.05, 0.6);
+    scene.add(me);
+
+    const car = panel("rc-car.jpg", 1.7, 1.05);
+    car.position.set(-2.15, 0.55, -0.2);
+    scene.add(car);
+
+    const engine = panel("engine.jpg", 1.45, 0.9);
+    engine.position.set(-1.7, -1.05, 0.3);
+    scene.add(engine);
+
+    const lathe = panel("lathe.jpg", 1.55, 0.95);
+    lathe.position.set(0.15, 1.35, -1.1);
+    scene.add(lathe);
+
+    const cnc = panel("cnc.jpg", 1.45, 0.9);
+    cnc.position.set(2.35, -1.15, -0.4);
+    scene.add(cnc);
+
+    const mouse = { x: 0 };
+    addEventListener("pointermove", function (e) {
+      mouse.x = (e.clientX / innerWidth) * 2 - 1;
+    });
+
+    let t = 0;
+    function tick() {
+      requestAnimationFrame(tick);
+      t += 0.01;
+      world.rotation.y += 0.0012;
+      me.rotation.y = mouse.x * 0.28 + Math.sin(t * 0.7) * 0.06;
+      me.position.y = 0.05 + Math.sin(t * 0.9) * 0.06;
+      car.rotation.y = -0.25 + Math.sin(t * 0.5) * 0.12;
+      car.position.y = 0.55 + Math.sin(t * 0.8) * 0.08;
+      engine.rotation.y = 0.2 + t * 0.08;
+      lathe.rotation.y = -0.15 + Math.sin(t * 0.4) * 0.1;
+      cnc.rotation.y = 0.2 + Math.sin(t * 0.45) * 0.1;
+      const scroll = scrollY / Math.max(1, document.body.scrollHeight - innerHeight);
+      camera.position.z = 7.2 - scroll * 1.6;
+      camera.position.x = mouse.x * 0.25;
+      camera.lookAt(0.5, 0.1, 0);
+      renderer.render(scene, camera);
+    }
+    tick();
+    addEventListener("resize", function () {
+      camera.aspect = innerWidth / innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(innerWidth, innerHeight);
+    });
+  })();
+  </script>
+</body>
+</html>
