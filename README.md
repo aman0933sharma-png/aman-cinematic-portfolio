@@ -1,5 +1,4 @@
-# Aman Sharma — Cinematic 3D Portfolio
+# Aman Sharma — 3D Cinematic Portfolio
 
-Animated cinematic portfolio for Mechanical Engineer Aman Sharma.
-
-Open `index.html` or deploy as a static site.
+Open `index.html` in Chrome.
+The page is self-contained (character + 3D scene + UI in one file).
