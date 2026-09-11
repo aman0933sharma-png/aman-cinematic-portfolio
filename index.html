@@ -7,10 +7,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
 <style>
-:root{--bg:#03050a;--ink:#eef4ff;--muted:#9db0c8;--gold:#d4b15f;--gold-dim:#8a7134;--blue:#3d7cff;--line:rgba(61,124,255,.28);--goldline:rgba(212,177,95,.38)}
+:root{--bg:#02040a;--ink:#eaf2ff;--muted:#8aa3c2;--gold:#d4b15f;--gold-dim:#8a7134;--blue:#4d8dff;--line:rgba(77,141,255,.32);--goldline:rgba(77,141,255,.35)}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{font-family:Outfit,sans-serif;background:radial-gradient(1200px 800px at 80% 10%,rgba(61,124,255,.16),transparent 50%),radial-gradient(900px 700px at 10% 90%,rgba(212,177,95,.08),transparent 45%),var(--bg);color:var(--ink);overflow-x:hidden;min-height:100vh;cursor:none}
+body{font-family:Outfit,sans-serif;background:radial-gradient(900px 700px at 50% 40%,rgba(40,90,180,.22),transparent 55%),radial-gradient(1200px 800px at 80% 0%,rgba(20,50,120,.2),transparent 50%),#02040a;color:var(--ink);overflow-x:hidden;min-height:100vh;cursor:none}
 
 .cursor{position:fixed;width:14px;height:14px;border:1px solid var(--gold);border-radius:50%;pointer-events:none;z-index:90;transform:translate(-50%,-50%);mix-blend-mode:screen;transition:width .2s,height .2s,background .2s}
 .cursor.hot{width:42px;height:42px;background:rgba(212,177,95,.12)}
@@ -39,7 +39,25 @@ main{position:relative;z-index:5}
 .eyebrow{color:var(--gold);letter-spacing:.28em;text-transform:uppercase;font-size:11px;margin-bottom:16px}
 h1,h2,h3{font-family:"Cormorant Garamond",serif;font-weight:600}
 
-#hero{display:grid;grid-template-columns:1.05fr .95fr;gap:5vw;align-items:center}
+
+.hero-stage{display:grid!important;grid-template-columns:1fr!important;place-items:center;text-align:center;min-height:100vh;padding-top:12vh}
+.person{position:relative;width:min(360px,58vw);margin:0 auto 8px;transform-origin:center bottom;animation:comeout 1.6s cubic-bezier(.16,1,.3,1) both;filter:drop-shadow(0 30px 50px rgba(30,80,180,.45))}
+.person video,.person img{width:100%;display:block;background:transparent;object-fit:contain}
+.person img.hide-photo{display:none!important}
+.person .glow{position:absolute;left:10%;right:10%;bottom:4%;height:40px;background:radial-gradient(ellipse,rgba(70,140,255,.55),transparent 70%);filter:blur(10px);pointer-events:none}
+@keyframes comeout{0%{opacity:0;transform:translateY(80px) scale(.55) rotateX(18deg)}60%{opacity:1;transform:translateY(-8px) scale(1.04) rotateX(0)}100%{opacity:1;transform:translateY(0) scale(1) rotateX(0)}}
+.free-type{position:relative;z-index:6;margin-top:6px}
+.free-type{perspective:1200px}
+.free-hello{font-family:"Cormorant Garamond",serif;font-weight:400;font-size:clamp(56px,10vw,128px);line-height:.88;letter-spacing:-.03em;color:#eef6ff;background:none;border:none;transform-style:preserve-3d}
+.free-hello em{font-style:italic;color:#9cc4ff;font-weight:400}
+.free-hello .ch{display:inline-block;opacity:0;transform:translateZ(-280px) rotateX(70deg) translateY(40px);text-shadow:0 18px 40px rgba(0,0,0,.65),0 0 28px rgba(80,150,255,.35)}
+.free-hello.go .ch{animation:cine3d 1.05s cubic-bezier(.16,1,.3,1) forwards}
+@keyframes cine3d{0%{opacity:0;transform:translateZ(-280px) rotateX(70deg) translateY(40px);filter:blur(12px)}60%{opacity:1;filter:blur(0)}100%{opacity:1;transform:translateZ(0) rotateX(0) translateY(0);filter:none}}
+.wait-line{opacity:0;transform:translateY(28px) translateZ(-80px);filter:blur(10px);pointer-events:none}
+.wait-line.go{animation:freein .9s cubic-bezier(.16,1,.3,1) forwards;pointer-events:auto}
+.free-hello.wait-line.go{animation:none;opacity:1;transform:none;filter:none}
+@keyframes freein{to{opacity:1;transform:none;filter:none}}
+
 .stage{min-height:58vh}
 .hello{font-family:"Cormorant Garamond",serif;font-size:clamp(42px,6.4vw,86px);line-height:.95;font-weight:400}
 .hello b{font-style:italic;color:var(--gold);font-weight:400}
@@ -163,25 +181,21 @@ footer{position:relative;z-index:5;padding:40px 8vw 60px;color:var(--muted);font
   </ul>
 </nav>
 <main>
-<section id="hero" class="panel">
-  <div class="hero-copy stage">
-    <p class="eyebrow enter wait-line">Hamirpur, Himachal Pradesh</p>
-    <h1 class="hello enter wait-line">Hi, I am<br/><b>Aman</b></h1>
-    <p class="lede enter wait-line">Mechanical Engineer from Hamirpur, HP. I design, manufacture and evaluate mechanical devices.</p>
-    <div class="hero-actions enter wait-line">
+<section id="hero" class="panel hero-stage">
+  <div class="person come-out" id="person">
+    <video id="heroVid" autoplay muted playsinline poster="character.png" aria-label="Aman Sharma">
+      <source src="character.mp4" type="video/mp4">
+    </video>
+    <img id="heroImg" src="character.png" alt="Aman Sharma"/>
+    <i class="glow"></i>
+  </div>
+  <div class="free-type">
+    <p class="eyebrow wait-line">Hamirpur · Himachal Pradesh</p>
+    <h1 class="free-hello wait-line" id="hello3d"></h1>
+    <p class="lede wait-line">Mechanical Engineer from Hamirpur, HP.</p>
+    <div class="hero-actions wait-line">
       <a class="btn gold" href="#experience">Work Experience</a>
       <a class="btn ghost" href="#work">Projects</a>
-    </div>
-  </div>
-  <div class="hero-card">
-    <div class="speech wait-line">Hi, I am Aman</div>
-    <div class="char-wrap">
-    <div class="frame">
-      <video id="heroVid" autoplay muted playsinline poster="character.png" aria-label="Aman Sharma">
-        <source src="character.mp4" type="video/mp4">
-      </video>
-      <img id="heroImg" src="character.png" alt="Aman Sharma"/>
-    </div>
     </div>
   </div>
 </section>
@@ -279,6 +293,26 @@ footer{position:relative;z-index:5;padding:40px 8vw 60px;color:var(--muted);font
     vid.addEventListener('loadeddata',()=>{if(himg) himg.classList.add('hide-photo'); vid.style.display='block';});
     vid.addEventListener('error',()=>{vid.style.display='none'; if(himg) himg.classList.remove('hide-photo');});
     vid.play().catch(()=>{vid.style.display='none';});
+  
+  const hello=document.getElementById('hello3d');
+  if(hello && !hello.dataset.built){
+    hello.dataset.built='1';
+    const parts=[{t:'Hi I am ',em:false},{t:'Aman',em:true}];
+    let n=0;
+    parts.forEach(p=>{
+      const wrap=p.em?document.createElement('em'):document.createDocumentFragment();
+      [...p.t].forEach(c=>{
+        const s=document.createElement('span');
+        s.className='ch';
+        s.textContent=c===' '?'\u00a0':c;
+        s.style.animationDelay=(0.05*n)+'s';
+        n++;
+        if(p.em) wrap.appendChild(s); else hello.appendChild(s);
+      });
+      if(p.em) hello.appendChild(wrap);
+    });
+  }
+
   const lines=document.querySelectorAll('.wait-line');
   const showHello=()=>{
     lines.forEach((el,i)=>{
