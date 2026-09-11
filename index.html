@@ -7,28 +7,28 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
 <style>
-:root{--bg:#02040a;--ink:#eaf2ff;--muted:#8aa3c2;--gold:#d4b15f;--gold-dim:#8a7134;--blue:#4d8dff;--line:rgba(77,141,255,.32);--goldline:rgba(77,141,255,.35)}
+:root{--bg:#f7fbff;--ink:#16324a;--muted:#5b7a94;--gold:#c9a227;--gold-dim:#a78420;--blue:#4db7ff;--sky:#b9e6ff;--line:rgba(77,183,255,.35);--goldline:rgba(201,162,39,.4)}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{font-family:Outfit,sans-serif;background:radial-gradient(900px 700px at 50% 40%,rgba(40,90,180,.22),transparent 55%),radial-gradient(1200px 800px at 80% 0%,rgba(20,50,120,.2),transparent 50%),#02040a;color:var(--ink);overflow-x:hidden;min-height:100vh;cursor:none}
+body{font-family:Outfit,sans-serif;background:radial-gradient(900px 620px at 50% 28%,rgba(135,206,250,.45),transparent 58%),radial-gradient(800px 500px at 90% 10%,rgba(201,162,39,.16),transparent 50%),linear-gradient(180deg,#ffffff 0%,#eaf7ff 48%,#ffffff 100%);color:var(--ink);overflow-x:hidden;min-height:100vh;cursor:none}
 
-.cursor{position:fixed;width:14px;height:14px;border:1px solid var(--gold);border-radius:50%;pointer-events:none;z-index:90;transform:translate(-50%,-50%);mix-blend-mode:screen;transition:width .2s,height .2s,background .2s}
+.cursor{position:fixed;width:14px;height:14px;border:1px solid var(--gold);border-radius:50%;pointer-events:none;z-index:90;transform:translate(-50%,-50%);transition:width .2s,height .2s,background .2s}
 .cursor.hot{width:42px;height:42px;background:rgba(212,177,95,.12)}
 .cursor-dot{position:fixed;width:4px;height:4px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:91;transform:translate(-50%,-50%)}
-.scan{position:fixed;inset:0;z-index:3;pointer-events:none;background:repeating-linear-gradient(to bottom,transparent 0 3px,rgba(0,20,40,.12) 3px 4px);opacity:.35}
-.flare{position:fixed;width:420px;height:420px;border-radius:50%;pointer-events:none;z-index:2;background:radial-gradient(circle,rgba(61,124,255,.18),transparent 70%);filter:blur(8px);animation:drift 14s ease-in-out infinite}
+.scan{position:fixed;inset:0;z-index:3;pointer-events:none;background:repeating-linear-gradient(to bottom,transparent 0 3px,rgba(180,220,255,.18) 3px 4px);opacity:.25}
+.flare{position:fixed;width:420px;height:420px;border-radius:50%;pointer-events:none;z-index:2;background:radial-gradient(circle,rgba(125,210,255,.4),transparent 70%);filter:blur(8px);animation:drift 14s ease-in-out infinite}
 .flare.gold{background:radial-gradient(circle,rgba(212,177,95,.14),transparent 70%);animation-delay:-6s;right:8%;top:18%}
 @keyframes drift{0%,100%{transform:translate(8vw,6vh)}50%{transform:translate(-10vw,18vh)}}
 #progress{position:fixed;top:28px;left:0;height:2px;width:0;z-index:40;background:linear-gradient(90deg,var(--blue),var(--gold));box-shadow:0 0 12px var(--gold)}
-.ticker{position:fixed;bottom:28px;left:0;right:0;z-index:21;overflow:hidden;height:22px;pointer-events:none;border-top:1px solid var(--line);background:rgba(3,5,10,.55)}
+.ticker{position:fixed;bottom:28px;left:0;right:0;z-index:21;overflow:hidden;height:22px;pointer-events:none;border-top:1px solid var(--line);background:rgba(255,255,255,.72)}
 .ticker b{display:inline-block;white-space:nowrap;animation:tick 28s linear infinite;color:var(--muted);letter-spacing:.28em;text-transform:uppercase;font-size:10px;padding-left:100%;font-weight:400}
 @keyframes tick{to{transform:translateX(-100%)}}
 #scene{position:fixed;inset:0;z-index:0;pointer-events:none}
-.vignette{position:fixed;inset:0;z-index:1;pointer-events:none;background:radial-gradient(ellipse at center,transparent 40%,rgba(0,0,0,.72) 100%)}
+.vignette{position:fixed;inset:0;z-index:1;pointer-events:none;background:radial-gradient(ellipse at center,transparent 52%,rgba(186,226,255,.35) 100%)}
 .grain{position:fixed;inset:0;z-index:2;pointer-events:none;opacity:.08;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
-.letterbox{position:fixed;left:0;right:0;height:28px;background:#000;z-index:20;pointer-events:none;box-shadow:inset 0 -1px 0 var(--line)}
+.letterbox{position:fixed;left:0;right:0;height:22px;background:#fff;z-index:20;pointer-events:none;box-shadow:inset 0 -1px 0 var(--line)}
 .letterbox.top{top:0}.letterbox.bottom{bottom:0}
-nav{position:fixed;top:40px;left:50%;transform:translateX(-50%);z-index:30;display:flex;justify-content:space-between;align-items:center;padding:10px 18px 10px 12px;width:min(920px,86vw);border:1px solid var(--line);background:rgba(6,10,20,.55);backdrop-filter:blur(16px);border-radius:999px}
+nav{position:fixed;top:40px;left:50%;transform:translateX(-50%);z-index:30;display:flex;justify-content:space-between;align-items:center;padding:10px 18px 10px 12px;width:min(920px,86vw);border:1px solid var(--line);background:rgba(255,255,255,.72);backdrop-filter:blur(16px);border-radius:999px;box-shadow:0 10px 30px rgba(77,183,255,.12)}
 .logo{font-family:"Cormorant Garamond",serif;letter-spacing:.18em;color:var(--gold);text-decoration:none;border:1px solid var(--goldline);width:40px;height:40px;display:grid;place-items:center;font-weight:600;border-radius:50%;box-shadow:0 0 16px rgba(212,177,95,.25)}
 nav ul{display:flex;gap:28px;list-style:none;align-items:center}
 nav a{color:var(--muted);text-decoration:none;font-size:11px;letter-spacing:.16em;text-transform:uppercase;position:relative}
@@ -41,16 +41,16 @@ h1,h2,h3{font-family:"Cormorant Garamond",serif;font-weight:600}
 
 
 .hero-stage{display:grid!important;grid-template-columns:1fr!important;place-items:center;text-align:center;min-height:100vh;padding-top:12vh}
-.person{position:relative;width:min(360px,58vw);margin:0 auto 8px;transform-origin:center bottom;animation:comeout 1.6s cubic-bezier(.16,1,.3,1) both;filter:drop-shadow(0 30px 50px rgba(30,80,180,.45))}
+.person{position:relative;width:min(360px,58vw);margin:0 auto 8px;transform-origin:center bottom;animation:comeout 1.6s cubic-bezier(.16,1,.3,1) both;filter:drop-shadow(0 24px 28px rgba(90,170,230,.28))}
 .person video,.person img{width:100%;display:block;background:transparent;object-fit:contain}
 .person img.hide-photo{display:none!important}
 .person .glow{position:absolute;left:10%;right:10%;bottom:4%;height:40px;background:radial-gradient(ellipse,rgba(70,140,255,.55),transparent 70%);filter:blur(10px);pointer-events:none}
 @keyframes comeout{0%{opacity:0;transform:translateY(80px) scale(.55) rotateX(18deg)}60%{opacity:1;transform:translateY(-8px) scale(1.04) rotateX(0)}100%{opacity:1;transform:translateY(0) scale(1) rotateX(0)}}
 .free-type{position:relative;z-index:6;margin-top:6px}
 .free-type{perspective:1200px}
-.free-hello{font-family:"Cormorant Garamond",serif;font-weight:400;font-size:clamp(56px,10vw,128px);line-height:.88;letter-spacing:-.03em;color:#eef6ff;background:none;border:none;transform-style:preserve-3d}
-.free-hello em{font-style:italic;color:#9cc4ff;font-weight:400}
-.free-hello .ch{display:inline-block;opacity:0;transform:translateZ(-280px) rotateX(70deg) translateY(40px);text-shadow:0 18px 40px rgba(0,0,0,.65),0 0 28px rgba(80,150,255,.35)}
+.free-hello{font-family:"Cormorant Garamond",serif;font-weight:400;font-size:clamp(56px,10vw,128px);line-height:.88;letter-spacing:-.03em;color:#16324a;background:none;border:none;transform-style:preserve-3d}
+.free-hello em{font-style:italic;color:#1a8fd6;font-weight:400}
+.free-hello .ch{display:inline-block;opacity:0;transform:translateZ(-280px) rotateX(70deg) translateY(40px);text-shadow:0 10px 24px rgba(77,183,255,.25),0 0 18px rgba(201,162,39,.2)}
 .free-hello.go .ch{animation:cine3d 1.05s cubic-bezier(.16,1,.3,1) forwards}
 @keyframes cine3d{0%{opacity:0;transform:translateZ(-280px) rotateX(70deg) translateY(40px);filter:blur(12px)}60%{opacity:1;filter:blur(0)}100%{opacity:1;transform:translateZ(0) rotateX(0) translateY(0);filter:none}}
 .wait-line{opacity:0;transform:translateY(28px) translateZ(-80px);filter:blur(10px);pointer-events:none}
@@ -104,7 +104,7 @@ h1,h2,h3{font-family:"Cormorant Garamond",serif;font-weight:600}
 .facts li{border-top:1px solid var(--line);padding-top:12px}
 .facts span{display:block;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:4px}
 .skill-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
-.skill-grid article{border:1px solid var(--line);padding:28px 22px;background:linear-gradient(180deg,rgba(61,124,255,.07),rgba(255,255,255,.015));min-height:170px;transition:transform .4s ease,border-color .4s ease,box-shadow .4s}
+.skill-grid article{border:1px solid var(--line);padding:28px 22px;background:linear-gradient(180deg,rgba(185,230,255,.55),#fff);min-height:170px;transition:transform .4s ease,border-color .4s ease,box-shadow .4s}
 .skill-grid article:hover{transform:translateY(-8px);border-color:var(--gold);box-shadow:0 16px 40px rgba(61,124,255,.12),0 0 24px rgba(212,177,95,.12)}
 .skill-grid h3{font-size:22px;margin-bottom:10px}
 .skill-grid p{color:var(--muted);font-size:14px;line-height:1.55}
@@ -125,11 +125,11 @@ h1,h2,h3{font-family:"Cormorant Garamond",serif;font-weight:600}
 .contact-grid a:hover{color:var(--gold)}
 .addr{color:var(--muted);line-height:1.7;margin-top:8px}
 footer{position:relative;z-index:5;padding:40px 8vw 60px;color:var(--muted);font-size:12px;letter-spacing:.12em;border-top:1px solid var(--line)}
-#loader{position:fixed;inset:0;z-index:80;background:#000;display:grid;place-items:center;transition:opacity .8s ease,visibility .8s ease}
+#loader{position:fixed;inset:0;z-index:80;background:#f4fbff;display:grid;place-items:center;transition:opacity .8s ease,visibility .8s ease}
 #loader.done{opacity:0;visibility:hidden}
 .loader-kicker{letter-spacing:.4em;text-transform:uppercase;font-size:11px;color:var(--gold);margin-bottom:12px}
 .loader-name{font-family:"Cormorant Garamond",serif;font-size:clamp(36px,7vw,72px);letter-spacing:.18em}
-.loader-bar{width:180px;height:1px;background:#222;margin:28px auto 18px;overflow:hidden}
+.loader-bar{width:180px;height:1px;background:#cfe8f8;margin:28px auto 18px;overflow:hidden}
 .loader-bar span{display:block;height:100%;width:0;background:var(--gold);animation:load 1.6s ease forwards}
 .loader-sub{color:var(--muted);letter-spacing:.22em;text-transform:uppercase;font-size:11px}
 @keyframes load{to{width:100%}}
@@ -184,6 +184,7 @@ footer{position:relative;z-index:5;padding:40px 8vw 60px;color:var(--muted);font
 <section id="hero" class="panel hero-stage">
   <div class="person come-out" id="person">
     <video id="heroVid" autoplay muted playsinline poster="character.png" aria-label="Aman Sharma">
+      <source src="character.webm" type="video/webm">
       <source src="character.mp4" type="video/mp4">
     </video>
     <img id="heroImg" src="character.png" alt="Aman Sharma"/>
@@ -363,15 +364,15 @@ footer{position:relative;z-index:5;padding:40px 8vw 60px;color:var(--muted);font
   renderer.toneMapping=THREE.ACESFilmicToneMapping;
   renderer.toneMappingExposure=1.08;
   const scene=new THREE.Scene();
-  scene.fog=new THREE.FogExp2(0x05060a,0.042);
+  scene.fog=new THREE.FogExp2(0xeaf7ff,0.028);
   const camera=new THREE.PerspectiveCamera(42,innerWidth/innerHeight,0.1,80);
   camera.position.set(0,0.35,8);
-  scene.add(new THREE.AmbientLight(0x152038,1.0));
-  const key=new THREE.PointLight(0xd4b15f,20,24); key.position.set(4,3,4); scene.add(key);
-  const rim=new THREE.PointLight(0x3d7cff,14,24); rim.position.set(-6,-1,2); scene.add(rim); const fill=new THREE.PointLight(0x1b3a7a,8,26); fill.position.set(0,-3,4); scene.add(fill);
+  scene.add(new THREE.AmbientLight(0xffffff,1.15));
+  const key=new THREE.PointLight(0xffe08a,16,24); key.position.set(4,3,4); scene.add(key);
+  const rim=new THREE.PointLight(0x7ec8ff,18,26); rim.position.set(-6,-1,2); scene.add(rim); const fill=new THREE.PointLight(0xffffff,10,28); fill.position.set(0,-3,4); scene.add(fill);
   const group=new THREE.Group(); scene.add(group);
   const gold=new THREE.MeshStandardMaterial({color:0xd4b15f,metalness:0.92,roughness:0.22,emissive:0x3a2a0a,emissiveIntensity:0.25});
-  const steel=new THREE.MeshStandardMaterial({color:0x8aa0c0,metalness:0.85,roughness:0.28});
+  const steel=new THREE.MeshStandardMaterial({color:0x7ec8ff,metalness:0.7,roughness:0.28});
   const r1=new THREE.Mesh(new THREE.TorusGeometry(2.4,0.018,16,80),gold); r1.rotation.set(1.2,0.2,0.4); group.add(r1);
   const r2=new THREE.Mesh(new THREE.TorusGeometry(3.4,0.012,16,80),gold); r2.rotation.set(0.4,1.1,0.2); group.add(r2);
   const r3=new THREE.Mesh(new THREE.TorusGeometry(1.6,0.02,16,80),gold); r3.rotation.set(1.6,0.5,0.1); group.add(r3);
