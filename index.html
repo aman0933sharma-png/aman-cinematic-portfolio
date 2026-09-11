@@ -3,371 +3,238 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Aman Sharma — Mechanical CAD & Surface Design</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<title>Aman Sharma — Mechanical 3D / CAD</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet"/>
 <style>
-:root{
-  --navy-dark:#070F17; --navy-card:#0E1B28; --navy-surface:#132435;
-  --gold:#C59B5F; --gold-light:#DFBE88; --gold-dark:#A57D43;
-  --papaya:#FF6A00; --cream:#FAF8F5; --cream-card:#F4EFEA;
-  --text-dark:#121A21; --text-muted:#626E7B; --text-light:#fff; --text-dim:rgba(255,255,255,.72);
-  --border-light:rgba(255,255,255,.12); --border-dark:rgba(7,15,23,.08); --border-gold:rgba(197,155,95,.35);
-  --shadow-sm:0 4px 12px rgba(0,0,0,.06); --shadow-md:0 12px 30px rgba(0,0,0,.12); --shadow-lg:0 20px 45px rgba(0,0,0,.22);
-  --shadow-gold:0 8px 25px rgba(255,106,0,.28);
-  --radius-sm:6px; --radius-md:12px; --radius-lg:20px; --radius-full:9999px;
-  --font-serif:"Cormorant Garamond",Georgia,serif; --font-sans:Inter,-apple-system,sans-serif;
-}
+:root{--bg:#07070a;--panel:#101014;--ink:#f3f3f6;--muted:#9a9aaa;--line:#23232c;--acc:#ff4d1c;--acc2:#7aa7ff}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{font-family:var(--font-sans);background:var(--navy-dark);color:var(--text-light);cursor:none}
-img{max-width:100%;display:block}
-a{color:inherit}
-.container{max-width:1320px;margin:0 auto;padding:0 32px;width:100%}
-#cursor-dot{position:fixed;width:6px;height:6px;background:var(--papaya);border-radius:50%;pointer-events:none;z-index:2000;transform:translate(-50%,-50%)}
-#cursor-ring{position:fixed;width:36px;height:36px;border:1px solid var(--gold);border-radius:50%;pointer-events:none;z-index:2000;transform:translate(-50%,-50%);transition:width .3s,height .3s,background .3s}
-#cursor-ring.hot{width:54px;height:54px;background:rgba(197,155,95,.12)}
-@media (pointer:coarse){#cursor-dot,#cursor-ring{display:none} body{cursor:auto}}
+body{font-family:Manrope,sans-serif;background:var(--bg);color:var(--ink);overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+img,video{max-width:100%;display:block}
+#scene{position:fixed;inset:0;z-index:0;pointer-events:none}
+.wrap{position:relative;z-index:2}
+nav{position:fixed;top:0;left:0;right:0;z-index:20;display:flex;justify-content:space-between;align-items:center;padding:18px 28px;background:linear-gradient(to bottom,rgba(7,7,10,.9),transparent)}
+.logo{font-family:Syne,sans-serif;letter-spacing:.12em;font-weight:700}
+nav ul{display:flex;gap:22px;list-style:none;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+nav a:hover{color:#fff}
+.cta{border:1px solid var(--acc);color:#fff;padding:8px 14px;border-radius:999px}
 
-header{position:fixed;top:0;left:0;width:100%;z-index:1000;padding:22px 48px;display:flex;align-items:center;justify-content:space-between;transition:all .4s ease}
-header.scrolled{background:rgba(7,15,23,.88);backdrop-filter:blur(16px);padding:14px 48px;border-bottom:1px solid rgba(197,155,95,.2);box-shadow:0 10px 30px rgba(0,0,0,.35)}
-.brand{display:flex;align-items:center;gap:12px;text-decoration:none}
-.helm{width:36px;height:36px}
-.word{font-family:var(--font-serif);font-size:22px;letter-spacing:.08em}
-.word small{display:block;font-family:var(--font-sans);font-size:9px;letter-spacing:.28em;color:var(--gold);font-weight:600}
-nav.links{display:flex;gap:28px;list-style:none}
-nav.links a{font-size:14px;font-weight:500;letter-spacing:.5px;color:#fff;opacity:.85;text-decoration:none;position:relative}
-nav.links a:hover{opacity:1;color:var(--gold)}
-nav.links a::after{content:"";position:absolute;left:50%;bottom:-6px;width:0;height:1.5px;background:var(--gold);transition:width .35s,left .35s}
-nav.links a:hover::after{width:100%;left:0}
-.btn-gold{border:0;border-radius:9999px;padding:12px 28px;background:var(--papaya);color:#fff;font-weight:600;font-size:13px;letter-spacing:.4px;text-decoration:none;display:inline-flex;align-items:center;gap:8px;box-shadow:var(--shadow-gold);cursor:pointer}
-.btn-gold:hover{background:var(--gold)}
-.btn-ghost{border:1px solid var(--border-light);background:transparent;color:#fff;border-radius:9999px;padding:12px 22px;text-decoration:none;font-size:13px}
+#hero{min-height:100vh;display:grid;place-items:center;text-align:center;padding:120px 24px 80px}
+#hero h1{font-family:Syne,sans-serif;font-size:clamp(48px,10vw,120px);line-height:.9;font-weight:800}
+#hero h1 span{display:block;color:var(--acc)}
+#hero .title{margin-top:16px;letter-spacing:.28em;text-transform:uppercase;font-size:12px;color:var(--muted)}
+.hero-act{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:32px}
+.btn{padding:14px 22px;border-radius:999px;border:1px solid #fff;background:#fff;color:#000;font-weight:600;cursor:pointer}
+.btn.ghost{background:transparent;color:#fff}
+.btn.acc{background:var(--acc);border-color:var(--acc);color:#fff}
+.play{width:56px;height:56px;border-radius:50%;border:1px solid #fff;display:grid;place-items:center;background:rgba(0,0,0,.35);cursor:pointer}
 
-#hero-runway{height:300vh;position:relative}
-.hero-sticky-frame{position:sticky;top:0;height:100vh;width:100%;overflow:hidden}
-#hero-canvas{position:absolute;inset:0;width:100%;height:100%;z-index:1;object-fit:cover}
-.hero-content-stage{position:absolute;bottom:110px;right:80px;max-width:580px;text-align:right;z-index:10;pointer-events:none}
-.hero-content-stage *{pointer-events:auto}
-.eyebrow{font-size:11.5px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:12px;justify-content:flex-end}
-.eyebrow::before{content:"";width:32px;height:1.5px;background:var(--gold)}
-.hero-content-stage h1{font-family:var(--font-serif);font-size:clamp(46px,5.2vw,72px);font-weight:500;line-height:1.06;color:#fff;text-shadow:0 4px 24px rgba(0,0,0,.55);margin:10px 0 14px}
-.hero-content-stage p{font-size:16px;color:rgba(255,255,255,.92);line-height:1.55;max-width:480px;margin-left:auto;text-shadow:0 2px 12px rgba(0,0,0,.6)}
-.hero-actions{display:flex;gap:12px;justify-content:flex-end;margin-top:22px}
-.hero-stage{display:none}.hero-stage.on{display:block}
-.hud-loc{position:absolute;bottom:44px;left:80px;z-index:10;color:#fff;font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase}
-.hud-stages{position:absolute;bottom:44px;right:80px;z-index:10;display:flex;align-items:center;gap:16px;font-size:12px;letter-spacing:2px}
-.hud-stages span{opacity:.45}.hud-stages span.on{opacity:1;color:var(--gold);font-weight:700}
-.hud-bar{width:88px;height:2px;background:rgba(255,255,255,.2);position:relative}
-.hud-bar i{position:absolute;left:0;top:0;height:100%;width:15%;background:var(--gold)}
+.cats{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;padding:10px 20px 30px;position:sticky;top:58px;z-index:15;background:linear-gradient(#07070a,rgba(7,7,10,.92))}
+.cats button{background:transparent;border:1px solid var(--line);color:var(--muted);padding:8px 14px;border-radius:999px;cursor:pointer;font-size:12px;letter-spacing:.06em;text-transform:uppercase}
+.cats button.on,.cats button:hover{border-color:#fff;color:#fff}
 
-.section{padding:130px 0 120px}
-.cream{background:var(--cream);color:var(--text-dark)}
-.navy{background:var(--navy-dark);color:#fff}
-h2{font-family:var(--font-serif);font-size:clamp(32px,4vw,54px);line-height:1.15;letter-spacing:-.02em;font-weight:600}
-.about-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:70px;align-items:center}
-.visual{position:relative;border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-lg);aspect-ratio:4/3.2}
-.visual img{width:100%;height:100%;object-fit:cover}
-.since{position:absolute;top:32px;left:36px;font-family:var(--font-serif);font-style:italic;font-size:38px;color:#fff;text-shadow:0 4px 18px rgba(0,0,0,.6)}
-.lead{font-size:16.5px;line-height:1.65;color:var(--text-muted);margin:18px 0 0}
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;border-top:1px solid var(--border-dark);padding-top:40px;margin-top:50px}
-.stats b{display:block;font-family:var(--font-serif);font-size:40px;color:var(--text-dark)}
-.stats span{font-size:12px;letter-spacing:1px;text-transform:uppercase;color:var(--text-muted)}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;padding:0 20px 80px;max-width:1280px;margin:0 auto}
+.item{position:relative;overflow:hidden;background:#111;min-height:280px;cursor:pointer}
+.item img{width:100%;height:100%;object-fit:cover;min-height:280px;transition:transform .6s}
+.item:hover img{transform:scale(1.06)}
+.item .meta{position:absolute;left:0;right:0;bottom:0;padding:16px;background:linear-gradient(transparent,rgba(0,0,0,.8))}
+.item h3{font-family:Syne,sans-serif;font-size:22px}
+.item small{color:var(--muted);letter-spacing:.1em;text-transform:uppercase;font-size:11px}
 
-.center{text-align:center}
-.tabs{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:28px 0 40px}
-.tabs button{background:transparent;border:1px solid var(--border-light);color:#fff;padding:10px 18px;border-radius:999px;cursor:pointer;font-size:12px;letter-spacing:.5px}
-.tabs button.on{background:var(--papaya);border-color:var(--papaya);box-shadow:var(--shadow-gold)}
-.fleet{display:grid;grid-template-columns:repeat(3,1fr);gap:30px}
-.card{background:var(--navy-card);border:1px solid var(--border-light);border-radius:var(--radius-md);overflow:hidden;transition:transform .4s cubic-bezier(.16,1,.3,1),box-shadow .4s,border-color .4s}
-.card:hover{transform:translateY(-8px);border-color:var(--gold);box-shadow:0 16px 36px rgba(0,0,0,.45)}
-.card .ph{height:220px;overflow:hidden}
-.card .ph img{width:100%;height:100%;object-fit:cover;transition:transform .8s}
-.card:hover .ph img{transform:scale(1.08)}
-.card .body{padding:22px}
-.tag{font-size:11px;letter-spacing:2px;color:var(--gold);font-weight:600}
-.card h3{font-family:var(--font-serif);font-size:26px;margin:8px 0}
-.card p{color:var(--text-dim);font-size:14px;line-height:1.6}
-.spec{margin-top:12px;font-size:11px;letter-spacing:1px;color:var(--gold-light);text-transform:uppercase}
+.sheet{position:fixed;inset:0;z-index:40;background:rgba(7,7,10,.96);overflow:auto;transform:translateY(110%);transition:.45s}
+.sheet.open{transform:none}
+.sheet .inner{max-width:980px;margin:70px auto 80px;padding:0 24px}
+.sheet .heroimg{width:100%;max-height:52vh;object-fit:cover;background:#111}
+.close{position:fixed;top:16px;right:18px;z-index:41;background:transparent;border:1px solid #fff;color:#fff;padding:8px 12px;cursor:pointer}
+.soft{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
+.soft span{border:1px solid var(--line);padding:6px 10px;font-size:12px;color:var(--muted)}
+.sheet h2{font-family:Syne,sans-serif;font-size:42px;margin:8px 0}
+.sheet p{color:#c8c8d2;line-height:1.7;margin:10px 0}
+.gallery{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:18px 0}
 
-.split{display:grid;grid-template-columns:1fr 1.05fr;min-height:700px;padding:0}
-.split .ph{min-height:480px;background:#000}
-.split .ph img{width:100%;height:100%;object-fit:cover}
-.split .feat{background:var(--cream-card);color:var(--text-dark);padding:100px 80px;display:flex;flex-direction:column;justify-content:center}
-.feat-item{display:grid;grid-template-columns:28px 1fr;gap:14px;margin-top:22px}
-.feat-item i{width:10px;height:10px;margin-top:7px;border-radius:50%;background:var(--papaya)}
-.feat-item h3{font-size:18px;margin-bottom:4px}
-.feat-item p{color:var(--text-muted);font-size:14.5px;line-height:1.6}
+#about{padding:90px 24px;max-width:1100px;margin:0 auto;display:grid;grid-template-columns:.7fr 1.3fr;gap:48px;align-items:center}
+#about img{width:100%;background:#0b0b10;object-fit:contain}
+#about h2{font-family:Syne,sans-serif;font-size:48px}
+.bars{margin-top:22px}
+.bar{margin:10px 0}.bar b{display:flex;justify-content:space-between;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.bar i{display:block;height:3px;background:#222;margin-top:6px}.bar i em{display:block;height:100%;background:var(--acc)}
 
-.dest-grid{display:grid;grid-template-columns:400px 1fr;gap:60px;align-items:center}
-.dest-nav{display:flex;gap:10px;margin-top:24px}
-.dest-nav button{width:46px;height:46px;border-radius:50%;border:0;background:#fff;box-shadow:var(--shadow-sm);cursor:pointer}
-.dest-nav button:hover{background:var(--papaya);color:#fff}
-.destinations-slider-wrapper{position:relative;overflow:hidden;padding:30px 16px 65px;margin:-30px -16px -65px}
-.dest-track{display:flex;gap:24px;overflow:auto;padding-bottom:8px;scroll-snap-type:x mandatory}
-.destination-card{min-width:240px;flex:0 0 240px;border-radius:var(--radius-md);overflow:hidden;background:#fff;box-shadow:var(--shadow-md);transition:var(--transition-smooth,all .4s cubic-bezier(.16,1,.3,1));scroll-snap-align:start}
-.destination-card:hover{transform:translateY(-8px);box-shadow:var(--shadow-lg)}
-.destination-card img{height:280px;width:100%;object-fit:cover}
-.destination-card .cap{padding:16px;color:var(--text-dark)}
-.destination-card h3{font-family:var(--font-serif);font-size:24px}
-.destination-card span{color:var(--text-muted);font-size:13px}
+#contact{padding:80px 24px 120px;text-align:center}
+#contact h2{font-family:Syne,sans-serif;font-size:56px}
+#contact a.mail{display:inline-block;margin-top:12px;font-size:22px;color:var(--acc)}
+.socials{display:flex;gap:16px;justify-content:center;margin-top:22px;color:var(--muted);font-size:13px;letter-spacing:.12em;text-transform:uppercase}
+footer{padding:24px;border-top:1px solid var(--line);color:var(--muted);font-size:12px;display:flex;justify-content:space-between}
 
-.cta-banner{min-height:480px;background-size:cover;background-position:center;position:relative;display:flex;align-items:center}
-.cta-banner::before{content:"";position:absolute;inset:0;background:rgba(7,15,23,.55)}
-.cta-banner .container{position:relative;z-index:1;text-align:right}
+#reel{position:fixed;inset:0;z-index:50;background:#000;display:none;place-items:center}
+#reel.on{display:grid}
+#reel video{width:min(960px,92vw);max-height:70vh;background:#000}
+#reel .list{color:#aaa;margin-top:12px;font-size:13px;text-align:center}
 
-.quotes{background:#fff;color:var(--text-dark);text-align:center;padding:120px 0 100px}
-.qmark{font-family:Georgia,serif;font-size:64px;color:var(--gold);line-height:1}
-.quotes blockquote{font-family:var(--font-serif);font-size:clamp(22px,3vw,32px);max-width:760px;margin:10px auto 28px;line-height:1.35}
-.quotes .who{color:var(--text-muted);font-size:13px}
-
-.press{background:#fff;border-top:1px solid var(--border-dark);padding:50px 0 70px;display:flex;justify-content:center;gap:40px;flex-wrap:wrap;color:#888;letter-spacing:2px;font-size:12px;font-weight:600}
-.press span:hover{color:var(--gold)}
-
-footer{background:var(--navy-dark);border-top:1px solid rgba(197,155,95,.2);padding:100px 0 40px;color:#fff}
-.foot{display:grid;grid-template-columns:1.5fr 1fr 1fr 1.2fr;gap:60px}
-footer h4{font-family:var(--font-serif);font-size:20px;margin-bottom:14px}
-footer a,footer p{color:var(--text-dim);text-decoration:none;display:block;margin:8px 0;font-size:14px}
-.legal{margin-top:48px;padding-top:20px;border-top:1px solid var(--border-light);display:flex;justify-content:space-between;color:var(--text-dim);font-size:12px}
-
-@media(max-width:992px){
-  nav.links,.btn-gold.desk{display:none}
-  header{padding:14px 20px}
-  .about-grid,.fleet,.split,.dest-grid,.foot{grid-template-columns:1fr}
-  .hero-content-stage{left:40px;right:40px;bottom:90px;text-align:center;max-width:100%}
-  .hero-content-stage p,.eyebrow{margin-left:auto;margin-right:auto;justify-content:center}
-  .hero-actions{justify-content:center;flex-wrap:wrap}
-  .hud-loc{left:24px}.hud-stages{right:24px}
-  .split .feat{padding:60px 28px}
-  .stats{grid-template-columns:1fr 1fr}
+@media(max-width:860px){
+  .grid,#about{grid-template-columns:1fr}
+  nav ul{display:none}
 }
-@media(max-width:480px){.stats{grid-template-columns:1fr} #hero-runway{height:220vh}}
 </style>
 </head>
 <body>
-<div id="cursor-dot"></div><div id="cursor-ring"></div>
-<header id="main-header">
-  <a class="brand" href="#top">
-    <svg class="helm" viewBox="0 0 36 36" fill="none"><circle cx="18" cy="18" r="16" stroke="#C59B5F" stroke-width="1.4"/><circle cx="18" cy="18" r="5" stroke="#FF6A00" stroke-width="1.4"/><path d="M18 2v8M18 26v8M2 18h8M26 18h8M7 7l5.5 5.5M23.5 23.5L29 29M29 7l-5.5 5.5M7 29l5.5-5.5" stroke="#C59B5F" stroke-width="1.2"/></svg>
-    <div class="word">AMAN<small>CAD · SURFACE DESIGN</small></div>
-  </a>
-  <nav class="links">
-    <a href="#top">Home</a>
-    <a href="#about">About</a>
-    <a href="#work">Work</a>
-    <a href="#experience">Experience</a>
-    <a href="#education">Education</a>
-    <a href="#contact">Contact</a>
-  </nav>
-  <a class="btn-gold desk" href="mailto:aman0933sharma@gmail.com">Get in Touch →</a>
-</header>
+<canvas id="scene"></canvas>
+<div class="wrap">
+<nav>
+  <a class="logo" href="#hero">AS</a>
+  <ul>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a class="cta" href="mailto:aman0933sharma@gmail.com">Available</a>
+</nav>
 
-<div id="hero-runway">
-  <div class="hero-sticky-frame">
-    <canvas id="hero-canvas"></canvas>
-    <div class="hero-content-stage">
-      <div class="hero-stage on" data-s="0">
-        <div class="eyebrow">Bespoke mechanical design</div>
-        <h1>Surface Intent</h1>
-        <p>CATIA-led modelling and evaluation for devices that must look resolved and run true.</p>
-        <div class="hero-actions"><a class="btn-gold" href="#work">Explore Work →</a><a class="btn-ghost" href="#about">Read Story</a></div>
-      </div>
-      <div class="hero-stage" data-s="1">
-        <div class="eyebrow">Precision in motion</div>
-        <h1>Driven Form</h1>
-        <p>From fillet to parting line — assemblies treated with the same discipline as a performance body.</p>
-        <div class="hero-actions"><a class="btn-gold" href="#experience">Experience →</a><a class="btn-ghost" href="#education">Path</a></div>
-      </div>
-      <div class="hero-stage" data-s="2">
-        <div class="eyebrow">Hamirpur · Himachal Pradesh</div>
-        <h1>Quiet Craft</h1>
-        <p>A mechanical engineer from Hamirpur, HP — designing, manufacturing and evaluating machines.</p>
-        <div class="hero-actions"><a class="btn-gold" href="#contact">Begin →</a><a class="btn-ghost" href="#education">Education</a></div>
-      </div>
+<section id="hero">
+  <div>
+    <p class="title">Mechanical Engineer · 3D CAD · Surface</p>
+    <h1>Aman<span>Sharma</span></h1>
+    <div class="hero-act">
+      <a class="btn" href="#work">Explore Work</a>
+      <button class="btn ghost" id="openReel">Play showreel</button>
+      <button class="play" id="openReel2" aria-label="Play reel">▶</button>
     </div>
-    <div class="hud-loc">Hamirpur, Himachal Pradesh</div>
-    <div class="hud-stages"><span class="on" id="s1">01</span><span id="s2">02</span><span id="s3">03</span><div class="hud-bar"><i id="hbar"></i></div></div>
+  </div>
+</section>
+
+<div class="cats" id="cats">
+  <button class="on" data-cat="all">All Work</button>
+  <button data-cat="product">Product Visualization</button>
+  <button data-cat="character">Assemblies</button>
+  <button data-cat="env">Environment / Shop</button>
+  <button data-cat="motion">Motion</button>
+  <button data-cat="personal">Personal Projects</button>
+</div>
+
+<section id="work" class="grid">
+  <article class="item" data-cat="personal product" data-id="rc">
+    <img src="images/rc-car.jpg" alt="RC Motor Car"/>
+    <div class="meta"><small>Personal · Prototype</small><h3>RC Motor Car</h3></div>
+  </article>
+  <article class="item" data-cat="product" data-id="engine">
+    <img src="images/engine.jpg" alt="Engine study"/>
+    <div class="meta"><small>Product Visualization</small><h3>Engine study</h3></div>
+  </article>
+  <article class="item" data-cat="env" data-id="lathe">
+    <img src="images/lathe.jpg" alt="Lathe"/>
+    <div class="meta"><small>Environment / Shop</small><h3>Lathe</h3></div>
+  </article>
+  <article class="item" data-cat="env" data-id="cnc">
+    <img src="images/cnc.jpg" alt="CNC"/>
+    <div class="meta"><small>Environment / Shop</small><h3>CNC</h3></div>
+  </article>
+  <article class="item" data-cat="character" data-id="cad">
+    <img src="images/cad.jpg" alt="CATIA"/>
+    <div class="meta"><small>Assemblies · CAD</small><h3>CATIA surfaces</h3></div>
+  </article>
+  <article class="item" data-cat="motion personal" data-id="reelp">
+    <img src="images/turn.jpg" alt="Motion study"/>
+    <div class="meta"><small>Motion</small><h3>Turn / motion study</h3></div>
+  </article>
+</section>
+
+<section id="about">
+  <img src="images/aman.png" alt="Aman Sharma"/>
+  <div>
+    <p class="title">About</p>
+    <h2>From Hamirpur, building parts that hold.</h2>
+    <p style="color:#c8c8d2;line-height:1.7;margin-top:14px">A diligent mechanical engineering graduate tasked with designing, manufacturing and evaluating mechanical devices. B.Tech 2019—2023, Landran, Mohali. Currently working at Introsoft Solution Pvt. Ltd.</p>
+    <div class="bars">
+      <div class="bar"><b>CATIA<em>Certified</em></b><i><em style="width:92%"></em></i></div>
+      <div class="bar"><b>CAD / Surface<em>Core</em></b><i><em style="width:88%"></em></i></div>
+      <div class="bar"><b>Workshop / Eval<em>Strong</em></b><i><em style="width:80%"></em></i></div>
+      <div class="bar"><b>Project mgmt<em>Working</em></b><i><em style="width:74%"></em></i></div>
+    </div>
+    <p style="margin-top:18px;color:var(--muted);font-size:13px">Languages: Hindi · English · Available: full-time at Introsoft · open to collaborations</p>
+  </div>
+</section>
+
+<section id="contact">
+  <p class="title">Commission status · employed</p>
+  <h2>Start a brief.</h2>
+  <a class="mail" href="mailto:aman0933sharma@gmail.com">aman0933sharma@gmail.com</a>
+  <p style="color:var(--muted);margin-top:10px">Hamirpur, Himachal Pradesh</p>
+  <div class="socials"><span>ArtStation</span><span>Behance</span><span>LinkedIn</span></div>
+</section>
+<footer><span>© 2026 Aman Sharma</span><span>3D / CAD portfolio</span></footer>
+</div>
+
+<button class="close" id="closeSheet" hidden>Close</button>
+<div class="sheet" id="sheet"><div class="inner" id="sheetInner"></div></div>
+
+<div id="reel">
+  <div>
+    <video src="images/reel.mp4" controls muted autoplay playsinline></video>
+    <div class="list">Featured: RC Motor Car · Engine · Lathe · CNC · CATIA</div>
+    <div style="text-align:center;margin-top:16px"><button class="btn ghost" id="closeReel">Close reel</button></div>
   </div>
 </div>
 
-<section class="section cream" id="about">
-  <div class="container about-grid">
-    <div class="visual"><img src="images/about.jpg" alt="CATIA surface model"/><div class="since">2019 — 2023</div></div>
-    <div>
-      <div class="eyebrow" style="justify-content:flex-start;color:var(--gold-dark)">Our heritage</div>
-      <h2>Aman Sharma</h2>
-      <p class="lead">A diligent mechanical engineering graduate tasked with designing, manufacturing and evaluating mechanical devices. Focused on CAD, CATIA and the quiet precision of surface design.</p>
-      <p class="lead">From Hamirpur, Himachal Pradesh. Currently working at Introsoft Solution Pvt. Ltd.</p>
-      <div class="stats">
-        <div><b class="stat-number" data-target="2019">0</b><span>B.Tech start</span></div>
-        <div><b class="stat-number" data-target="2023">0</b><span>B.Tech close</span></div>
-        <div><b>CATIA</b><span>Certified</span></div>
-        <div><b>HP</b><span>Hamirpur</span></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section navy" id="work">
-  <div class="container">
-    <div class="center">
-      <div class="eyebrow" style="justify-content:center">Selected work</div>
-      <h2>Handpicked studies</h2>
-      <div class="tabs">
-        <button class="on" data-f="all">All</button>
-        <button data-f="cad">CAD</button>
-        <button data-f="shop">Workshop</button>
-        <button data-f="proto">Prototype</button>
-      </div>
-    </div>
-    <div class="fleet">
-      <article class="card" data-f="proto"><div class="ph"><img src="images/project.jpg" alt="RC Motor Car"/></div><div class="body"><div class="tag">Prototype</div><h3>RC Motor Car</h3><p>College chassis, drive and fabrication drawings — structure through test notes.</p><div class="spec">Build · Drawings · Evaluation</div></div></article>
-      <article class="card" data-f="cad"><div class="ph"><img src="images/cad.jpg" alt="CATIA cabin study"/></div><div class="body"><div class="tag">Surface CAD</div><h3>CATIA Studio</h3><p>Certified modelling at Parametric Cadtech Design Centre. Fillets, splits, production intent.</p><div class="spec">CATIA · Parting lines</div></div></article>
-      <article class="card" data-f="shop"><div class="ph"><img src="images/lathe.jpg" alt="Lathe work"/></div><div class="body"><div class="tag">Workshop</div><h3>Machines</h3><p>Hands-on evaluation at the bench — lathe, fit and the feel of a finished part.</p><div class="spec">Lathe · CNC · Tools</div></div></article>
-    </div>
-  </div>
-</section>
-
-<section class="split" id="experience">
-  <div class="ph"><img src="images/cnc.jpg" alt="Precision machining"/></div>
-  <div class="feat">
-    <div class="eyebrow" style="justify-content:flex-start;color:var(--gold-dark)">Career</div>
-    <h2>Work experience</h2>
-    <div class="feat-item"><i></i><div><h3>Introsoft Solution Pvt. Ltd.</h3><p>Present — currently working.</p></div></div>
-    <div class="feat-item"><i></i><div><h3>Computer-Aided Design</h3><p>Parametric modelling and production-ready drawings.</p></div></div>
-    <div class="feat-item"><i></i><div><h3>Mechanical Design</h3><p>Concept through fabrication and evaluation of devices.</p></div></div>
-    <div class="feat-item"><i></i><div><h3>Project management</h3><p>Planning and delivery of builds with a calm brief.</p></div></div>
-  </div>
-</section>
-
-<section class="section cream" id="education">
-  <div class="container dest-grid">
-    <div>
-      <div class="eyebrow" style="justify-content:flex-start;color:var(--gold-dark)">Path</div>
-      <h2>Education &amp; places</h2>
-      <p class="lead">Bachelor of Technology, Mechanical Engineering, 2019 — 2023. Landran, Mohali. CATIA at Parametric Cadtech Design Centre. Home: Hamirpur, Himachal Pradesh.</p>
-      <a class="btn-gold" href="#contact" style="margin-top:22px">Connect →</a>
-      <div class="dest-nav"><button id="prevD" aria-label="Previous">←</button><button id="nextD" aria-label="Next">→</button></div>
-    </div>
-    <div class="destinations-slider-wrapper">
-      <div class="dest-track" id="destinations-slider">
-        <article class="destination-card"><img src="images/dest.jpg" alt="Himachal"/><div class="cap"><h3>Hamirpur</h3><span>Himachal Pradesh</span></div></article>
-        <article class="destination-card"><img src="images/about.jpg" alt="Landran"/><div class="cap"><h3>Landran, Mohali</h3><span>B.Tech 2019 — 2023</span></div></article>
-        <article class="destination-card"><img src="images/hero3.jpg" alt="Studio"/><div class="cap"><h3>CATIA</h3><span>Parametric Cadtech</span></div></article>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="cta-banner" id="contact" style="background-image:url('images/cta.jpg')">
-  <div class="container">
-    <div class="eyebrow" style="justify-content:flex-end">Connect</div>
-    <h2 style="color:#fff">Let’s build something that moves.</h2>
-    <p class="lead" style="color:rgba(255,255,255,.85);margin-left:auto;max-width:460px">aman0933sharma@gmail.com · Hamirpur, Himachal Pradesh</p>
-    <a class="btn-gold" href="mailto:aman0933sharma@gmail.com" style="margin-top:18px">Write to Aman →</a>
-  </div>
-</section>
-
-<section class="quotes">
-  <div class="qmark">“</div>
-  <blockquote>Designing, manufacturing and evaluating mechanical devices with the same calm that a resolved surface asks for.</blockquote>
-  <div class="who">Aman Sharma · Mechanical Engineer · Hamirpur, HP</div>
-</section>
-<div class="press"><span>CATIA</span><span>CAD</span><span>SURFACE</span><span>MACHINES</span><span>INTROSOFT</span></div>
-
-<footer>
-  <div class="container">
-    <div class="foot">
-      <div>
-        <div class="word">AMAN<small>CAD · SURFACE DESIGN</small></div>
-        <p>Mechanical engineer from Hamirpur, HP. B.Tech 2019 — 2023, Landran, Mohali.</p>
-      </div>
-      <div><h4>Work</h4><a href="#work">Projects</a><a href="#experience">Experience</a><a href="#education">Education</a></div>
-      <div><h4>Focus</h4><a href="#work">CATIA</a><a href="#work">CAD</a><a href="#work">Machines</a></div>
-      <div><h4>Contact</h4><a href="mailto:aman0933sharma@gmail.com">aman0933sharma@gmail.com</a><p>Hamirpur, Himachal Pradesh</p></div>
-    </div>
-    <div class="legal"><span>© 2026 Aman Sharma. All rights reserved.</span><span>Privacy · Terms</span></div>
-  </div>
-</footer>
-
+<script src="https://unpkg.com/three@0.160.1/build/three.min.js"></script>
 <script>
+const projects={
+rc:{title:'RC Motor Car',year:'College',client:'Personal',soft:['CAD','Drawings','Workshop'],role:'Modeling, assembly, evaluation',img:'images/rc-car.jpg',cat:'Personal Projects',body:'College prototype exploring structure, drive and control. Built fabrication drawings and assembled the running concept.'},
+engine:{title:'Engine study',year:'Studio',client:'Study',soft:['CAD','Evaluation'],role:'Visualization, breakdown',img:'images/engine.jpg',cat:'Product Visualization',body:'Mechanical evaluation of an engine assembly — form, fit and how the parts read as a product.'},
+lathe:{title:'Lathe',year:'Workshop',client:'Practice',soft:['Workshop'],role:'Process',img:'images/lathe.jpg',cat:'Environment Art',body:'Bench work: turning, sparks, and the feel of a finished diameter.'},
+cnc:{title:'CNC',year:'Workshop',client:'Practice',soft:['CNC'],role:'Process',img:'images/cnc.jpg',cat:'Environment Art',body:'Precision cutting and production intent on the machine.'},
+cad:{title:'CATIA surfaces',year:'Certification',client:'Parametric Cadtech Design Centre',soft:['CATIA'],role:'Modeling, surfacing',img:'images/cad.jpg',cat:'Assemblies',body:'Certified CATIA. Fillets, parting lines and production-ready surface intent.'},
+reelp:{title:'Turn / motion study',year:'2026',client:'Personal',soft:['Lookdev'],role:'Lighting, motion',img:'images/turn.jpg',cat:'Motion Graphics',body:'Motion and lighting tests for mechanical form — how a body reads in time.'}
+};
+
+const sheet=document.getElementById('sheet'), inner=document.getElementById('sheetInner'), close=document.getElementById('closeSheet');
+function openP(id){
+  const p=projects[id]; if(!p) return;
+  inner.innerHTML=`<img class="heroimg" src="${p.img}" alt="${p.title}"/>
+    <p class="title" style="margin-top:18px">${p.cat} · ${p.year}</p>
+    <h2>${p.title}</h2>
+    <p>Client: ${p.client} · Role: ${p.role}</p>
+    <div class="soft">${p.soft.map(s=>`<span>${s}</span>`).join('')}</div>
+    <h3 style="margin-top:20px">Overview</h3>
+    <p>${p.body}</p>
+    <h3>Gallery</h3>
+    <div class="gallery"><img src="${p.img}" alt=""/><img src="images/cad.jpg" alt="WIP"/></div>`;
+  sheet.classList.add('open'); close.hidden=false;
+}
+close.onclick=()=>{sheet.classList.remove('open'); close.hidden=true};
+document.querySelectorAll('.item').forEach(el=>el.onclick=()=>openP(el.dataset.id));
+document.querySelectorAll('#cats button').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('#cats button').forEach(x=>x.classList.remove('on'));
+  b.classList.add('on');
+  const c=b.dataset.cat;
+  document.querySelectorAll('.item').forEach(it=>it.style.display=(c==='all'||it.dataset.cat.includes(c))?'':'none');
+});
+const reel=document.getElementById('reel');
+function openReel(){reel.classList.add('on'); const v=reel.querySelector('video'); v.currentTime=0; v.play().catch(()=>{});}
+document.getElementById('openReel').onclick=openReel;
+document.getElementById('openReel2').onclick=openReel;
+document.getElementById('closeReel').onclick=()=>{reel.classList.remove('on'); reel.querySelector('video').pause();};
+
 (function(){
-  const frames=['images/hero1.jpg','images/hero2.jpg','images/hero3.jpg'];
-  const imgs=frames.map(src=>{const i=new Image(); i.src=src; return i;});
-  const canvas=document.getElementById('hero-canvas');
-  const ctx=canvas.getContext('2d');
-  let cur=0, target=0;
-  function size(){
-    const dpr=Math.min(devicePixelRatio||1,2);
-    canvas.width=innerWidth*dpr; canvas.height=innerHeight*dpr;
-    canvas.style.width=innerWidth+'px'; canvas.style.height=innerHeight+'px';
-  }
-  function cover(img){
-    if(!img || !img.naturalWidth) return;
-    const scale=Math.max(canvas.width/img.naturalWidth, canvas.height/img.naturalHeight);
-    const dw=img.naturalWidth*scale, dh=img.naturalHeight*scale;
-    ctx.drawImage(img,(canvas.width-dw)/2,(canvas.height-dh)/2,dw,dh);
-  }
-  function tick(){
-    const runway=document.getElementById('hero-runway');
-    const max=runway.offsetHeight-innerHeight;
-    const p=Math.max(0,Math.min(1,scrollY/Math.max(1,max)));
-    target=p*(frames.length-1);
-    cur += (target-cur)*0.085;
-    const a=Math.floor(cur), b=Math.min(frames.length-1,a+1), t=cur-a;
-    cover(imgs[a]);
-    if(imgs[b] && t>0.02){ ctx.globalAlpha=t; cover(imgs[b]); ctx.globalAlpha=1; }
-    const stage=p<0.33?0:p<0.67?1:2;
-    document.querySelectorAll('.hero-stage').forEach((el,i)=>el.classList.toggle('on',i===stage));
-    ['s1','s2','s3'].forEach((id,i)=>document.getElementById(id).classList.toggle('on',i===stage));
-    document.getElementById('hbar').style.width=(15+p*85)+'%';
-    requestAnimationFrame(tick);
-  }
-  size(); addEventListener('resize',size,{passive:true});
-  requestAnimationFrame(tick);
-
-  const header=document.getElementById('main-header');
-  addEventListener('scroll',()=>header.classList.toggle('scrolled',scrollY>60),{passive:true});
-
-  const dot=document.getElementById('cursor-dot'), ring=document.getElementById('cursor-ring');
-  let mx=0,my=0,rx=0,ry=0;
-  addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px';});
-  (function loop(){rx+=(mx-rx)*0.15; ry+=(my-ry)*0.15; ring.style.left=rx+'px'; ring.style.top=ry+'px'; requestAnimationFrame(loop);})();
-  document.querySelectorAll('a,button,.card,.destination-card').forEach(el=>{
-    el.addEventListener('mouseenter',()=>ring.classList.add('hot'));
-    el.addEventListener('mouseleave',()=>ring.classList.remove('hot'));
-  });
-
-  document.querySelectorAll('.tabs button').forEach(btn=>{
-    btn.onclick=()=>{
-      document.querySelectorAll('.tabs button').forEach(b=>b.classList.remove('on'));
-      btn.classList.add('on');
-      const f=btn.dataset.f;
-      document.querySelectorAll('.card').forEach(c=>c.style.display=(f==='all'||c.dataset.f===f)?'':'none');
-    };
-  });
-
-  const track=document.getElementById('destinations-slider');
-  document.getElementById('nextD').onclick=()=>track.scrollBy({left:260,behavior:'smooth'});
-  document.getElementById('prevD').onclick=()=>track.scrollBy({left:-260,behavior:'smooth'});
-
-  const io=new IntersectionObserver(ents=>{
-    ents.forEach(en=>{
-      if(!en.isIntersecting) return;
-      document.querySelectorAll('.stat-number').forEach(el=>{
-        const t=+el.dataset.target; if(!t) return;
-        const start=performance.now();
-        (function step(now){
-          const k=Math.min(1,(now-start)/1800);
-          el.textContent=Math.round(t*k);
-          if(k<1) requestAnimationFrame(step);
-        })(start);
-      });
-      io.disconnect();
-    });
-  },{threshold:.4});
-  const st=document.querySelector('.stats'); if(st) io.observe(st);
+  if(!window.THREE) return;
+  const renderer=new THREE.WebGLRenderer({canvas:document.getElementById('scene'),antialias:true,alpha:true});
+  renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+  renderer.setSize(innerWidth,innerHeight);
+  const scene=new THREE.Scene();
+  const camera=new THREE.PerspectiveCamera(40,innerWidth/innerHeight,.1,40);
+  camera.position.set(0,0,8);
+  scene.add(new THREE.AmbientLight(0xffffff,.4));
+  const l=new THREE.PointLight(0xff4d1c,40,20); l.position.set(3,2,4); scene.add(l);
+  const l2=new THREE.PointLight(0x7aa7ff,20,18); l2.position.set(-4,-1,3); scene.add(l2);
+  const mat=new THREE.MeshStandardMaterial({color:0x888898,metalness:.85,roughness:.25});
+  const g=new THREE.Group(); scene.add(g);
+  g.add(new THREE.Mesh(new THREE.TorusKnotGeometry(1.2,.28,180,24),mat));
+  const ring=new THREE.Mesh(new THREE.TorusGeometry(2.2,.02,8,80), new THREE.MeshBasicMaterial({color:0xff4d1c}));
+  g.add(ring);
+  addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight)});
+  (function tick(t){
+    g.rotation.y=t/4000; g.rotation.x=Math.sin(t/3000)*.2;
+    renderer.render(scene,camera); requestAnimationFrame(tick);
+  })(0);
 })();
 </script>
 </body>
