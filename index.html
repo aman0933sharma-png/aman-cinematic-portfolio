@@ -68,7 +68,10 @@ h1,h2,h3{font-family:"Cormorant Garamond",serif;font-weight:600}
 .btn.ghost{border:1px solid var(--line);color:var(--ink);background:rgba(61,124,255,.06)}.btn.ghost:hover{border-color:var(--blue);box-shadow:0 0 20px rgba(61,124,255,.25);transform:translateY(-3px)}
 
 .frame{border:1px solid var(--goldline);padding:10px;background:linear-gradient(180deg,rgba(61,124,255,.12),rgba(0,0,0,.45));box-shadow:0 30px 80px rgba(0,0,0,.55),0 0 40px rgba(61,124,255,.18);transform:rotate(1.5deg);position:relative}.frame::before{content:"";position:absolute;inset:-1px;border:1px solid transparent;background:linear-gradient(120deg,var(--gold),transparent 40%,var(--blue)) border-box;mask:linear-gradient(#000 0 0) padding-box,linear-gradient(#000 0 0);mask-composite:exclude;-webkit-mask-composite:xor;pointer-events:none;animation:spinborder 8s linear infinite}
-.frame img{width:100%;display:block;opacity:1!important;visibility:visible!important;min-height:280px;object-fit:contain;background:transparent}
+.frame video,.frame img{width:100%;display:block;opacity:1!important;visibility:visible!important;min-height:280px;object-fit:contain;background:transparent}
+.frame video{position:relative;z-index:1}
+.frame img.hide-photo{display:none!important;min-height:0}
+
 .card-meta{display:flex;justify-content:space-between;margin-top:14px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
 .section-head{margin-bottom:48px}
 .section-head h2{font-size:clamp(40px,6vw,72px);line-height:1}
@@ -129,7 +132,7 @@ footer{position:relative;z-index:5;padding:40px 8vw 60px;color:var(--muted);font
 <div class="flare" style="left:6%;top:12%"></div>
 <div class="flare gold"></div>
 <div id="progress"></div>
-<div class="ticker"><b>Hello I am Aman · Introsoft Solution Pvt. Ltd. · Chandigarh Engineering College · Mechanical Engineer · CATIA · Hamirpur · </b></div>
+<div class="ticker"><b>Hello I am Aman · Mechanical Engineer · Hamirpur, HP · Landran, Mohali · CATIA · CAD · </b></div>
 <div id="loader">
   <div style="text-align:center">
     <p class="loader-kicker">Portfolio</p>
@@ -148,6 +151,7 @@ footer{position:relative;z-index:5;padding:40px 8vw 60px;color:var(--muted);font
   <ul>
     <li><a href="#about">About</a></li>
     <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
     <li><a href="#work">Work</a></li>
     <li><a href="#education">Path</a></li>
     <li><a href="#contact" class="nav-cta">Contact</a></li>
@@ -156,22 +160,24 @@ footer{position:relative;z-index:5;padding:40px 8vw 60px;color:var(--muted);font
 <main>
 <section id="hero" class="panel">
   <div class="hero-copy stage">
-    <p class="eyebrow enter">Introsoft Solution Pvt. Ltd.</p>
+    <p class="eyebrow enter">Hamirpur, Himachal Pradesh</p>
     <h1 class="hello enter d1">Hello, I am<br/><b>Aman</b></h1>
-    <p class="job enter d2">I am currently working in <span>Introsoft Solution Pvt. Ltd.</span></p>
-    <p class="college enter d3">Chandigarh Engineering College</p>
-    <p class="lede enter d4">Mechanical Engineer · B.Tech 2019 — 2023 · CATIA · CAD · Hamirpur</p>
-    <div class="hero-actions enter d5">
-      <a class="btn gold" href="#work">View Work</a>
-      <a class="btn ghost" href="#education">Education</a>
+    <p class="lede enter d2">Mechanical Engineer from Hamirpur, HP. I design, manufacture and evaluate mechanical devices.</p>
+    <div class="hero-actions enter d3">
+      <a class="btn gold" href="#experience">Work Experience</a>
+      <a class="btn ghost" href="#work">Projects</a>
     </div>
   </div>
   <div class="hero-card">
     <div class="speech">Hello, I am Aman</div>
     <div class="char-wrap">
-    <div class="frame"><img src="character.png" alt="3D character of Aman Sharma"/></div>
+    <div class="frame">
+      <video id="heroVid" autoplay muted loop playsinline poster="character.png" aria-label="Aman Sharma">
+        <source src="character.mp4" type="video/mp4">
+      </video>
+      <img id="heroImg" src="character.png" alt="Aman Sharma"/>
     </div>
-    
+    </div>
   </div>
 </section>
 <section id="about" class="panel reveal">
@@ -179,8 +185,7 @@ footer{position:relative;z-index:5;padding:40px 8vw 60px;color:var(--muted);font
   <div class="about-grid">
     <p class="about-lead">A diligent mechanical engineering graduate tasked with designing, manufacturing and evaluating mechanical devices. A mechanical enthusiast with strong analytical and communication skills, focused on the development and growth of the organisation.</p>
     <ul class="facts">
-      <li><span>Location</span>Hamirpur, Himachal Pradesh</li>
-      <li><span>Currently</span>Introsoft Solution Pvt. Ltd.</li>
+      <li><span>From</span>Hamirpur, Himachal Pradesh</li>
       <li><span>Discipline</span>Mechanical Engineering</li>
       <li><span>Focus</span>CAD · Mechanical Design</li>
       <li><span>Languages</span>Hindi · English</li>
@@ -200,8 +205,14 @@ footer{position:relative;z-index:5;padding:40px 8vw 60px;color:var(--muted);font
     <article><h3>Communication</h3><p>Translating technical work for stakeholders.</p></article>
   </div>
 </section>
+<section id="experience" class="panel reveal">
+  <div class="section-head"><p class="eyebrow">03 — Career</p><h2>Work experience</h2></div>
+  <div class="timeline">
+    <div class="tl-item"><span class="year">Present</span><h3>Introsoft Solution Pvt. Ltd.</h3><p>Currently working</p></div>
+  </div>
+</section>
 <section id="work" class="panel reveal">
-  <div class="section-head"><p class="eyebrow">03 — Selected work</p><h2>Projects</h2></div>
+  <div class="section-head"><p class="eyebrow">04 — Selected work</p><h2>Projects</h2></div>
   <article class="project">
     <div><div class="project-index">01</div><img src="rc-car.jpg" alt="RC Motor Car 3D model"/></div>
     <div>
@@ -236,15 +247,14 @@ footer{position:relative;z-index:5;padding:40px 8vw 60px;color:var(--muted);font
   </article>
 </section>
 <section id="education" class="panel reveal">
-  <div class="section-head"><p class="eyebrow">04 — Path</p><h2>Education &amp; certification</h2></div>
+  <div class="section-head"><p class="eyebrow">05 — Path</p><h2>Education &amp; certification</h2></div>
   <div class="timeline">
-    <div class="tl-item"><span class="year">Present</span><h3>Introsoft Solution Pvt. Ltd.</h3><p>Currently working</p></div>
-    <div class="tl-item"><span class="year">2019 — 2023</span><h3>Bachelor of Technology</h3><p>Mechanical Engineering · Chandigarh Engineering College</p></div>
+    <div class="tl-item"><span class="year">2019 — 2023</span><h3>Bachelor of Technology</h3><p>Mechanical Engineering · Landran, Mohali</p></div>
     <div class="tl-item"><span class="year">Certification</span><h3>CATIA Software</h3><p>Parametric Cadtech Design Centre</p></div>
   </div>
 </section>
 <section id="contact" class="panel reveal">
-  <div class="section-head"><p class="eyebrow">05 — Connect</p><h2>Let’s build something<br/>that moves.</h2></div>
+  <div class="section-head"><p class="eyebrow">06 — Connect</p><h2>Let’s build something<br/>that moves.</h2></div>
   <div class="contact-grid">
     <a href="mailto:aman0933sharma@gmail.com">aman0933sharma@gmail.com</a>
     <p class="addr">Hamirpur, Himachal Pradesh</p>
@@ -258,6 +268,14 @@ footer{position:relative;z-index:5;padding:40px 8vw 60px;color:var(--muted);font
   const loader=document.getElementById('loader');
   const hide=()=>setTimeout(()=>loader.classList.add('done'),900);
   addEventListener('load',hide); setTimeout(hide,2200);
+  const vid=document.getElementById('heroVid');
+  const himg=document.getElementById('heroImg');
+  if(vid){
+    vid.addEventListener('loadeddata',()=>{if(himg) himg.classList.add('hide-photo'); vid.style.display='block';});
+    vid.addEventListener('error',()=>{vid.style.display='none'; if(himg) himg.classList.remove('hide-photo');});
+    vid.play().catch(()=>{vid.style.display='none';});
+  }
+
   const cur=document.getElementById('cursor');
   const dot=document.getElementById('cursorDot');
   const bar=document.getElementById('progress');
