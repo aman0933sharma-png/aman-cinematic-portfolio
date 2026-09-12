@@ -1,4 +1,5 @@
-# Aman Sharma — 3D Cinematic Portfolio
+# Aman Sharma — Cinematic Portfolio
 
-Open `index.html` in Chrome.
-The page is self-contained (character + 3D scene + UI in one file).
+Mechanical Engineer. Scroll through the castle.
+
+GitHub Pages: Settings → Pages → Deploy from branch **main** / **root**.
