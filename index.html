@@ -3,239 +3,164 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Aman Sharma — Mechanical 3D / CAD</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<title>Aman Sharma — Mechanical Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&family=Sora:wght@300;400;500;600&display=swap" rel="stylesheet"/>
 <style>
-:root{--bg:#07070a;--panel:#101014;--ink:#f3f3f6;--muted:#9a9aaa;--line:#23232c;--acc:#ff4d1c;--acc2:#7aa7ff}
+:root{--bg:#0b0618;--card:#120c24;--ink:#ece8f8;--muted:#9b93b3;--line:rgba(167,139,250,.22);--lilac:#b9a6ff;--violet:#7c6bff}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{font-family:Manrope,sans-serif;background:var(--bg);color:var(--ink);overflow-x:hidden}
+body{font-family:Sora,sans-serif;background:radial-gradient(900px 600px at 50% 0%,rgba(92,60,180,.28),transparent 55%),var(--bg);color:var(--ink)}
 a{color:inherit;text-decoration:none}
-img,video{max-width:100%;display:block}
-#scene{position:fixed;inset:0;z-index:0;pointer-events:none}
-.wrap{position:relative;z-index:2}
-nav{position:fixed;top:0;left:0;right:0;z-index:20;display:flex;justify-content:space-between;align-items:center;padding:18px 28px;background:linear-gradient(to bottom,rgba(7,7,10,.9),transparent)}
-.logo{font-family:Syne,sans-serif;letter-spacing:.12em;font-weight:700}
-nav ul{display:flex;gap:22px;list-style:none;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
-nav a:hover{color:#fff}
-.cta{border:1px solid var(--acc);color:#fff;padding:8px 14px;border-radius:999px}
-
-#hero{min-height:100vh;display:grid;place-items:center;text-align:center;padding:120px 24px 80px}
-#hero h1{font-family:Syne,sans-serif;font-size:clamp(48px,10vw,120px);line-height:.9;font-weight:800}
-#hero h1 span{display:block;color:var(--acc)}
-#hero .title{margin-top:16px;letter-spacing:.28em;text-transform:uppercase;font-size:12px;color:var(--muted)}
-.hero-act{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:32px}
-.btn{padding:14px 22px;border-radius:999px;border:1px solid #fff;background:#fff;color:#000;font-weight:600;cursor:pointer}
-.btn.ghost{background:transparent;color:#fff}
-.btn.acc{background:var(--acc);border-color:var(--acc);color:#fff}
-.play{width:56px;height:56px;border-radius:50%;border:1px solid #fff;display:grid;place-items:center;background:rgba(0,0,0,.35);cursor:pointer}
-
-.cats{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;padding:10px 20px 30px;position:sticky;top:58px;z-index:15;background:linear-gradient(#07070a,rgba(7,7,10,.92))}
-.cats button{background:transparent;border:1px solid var(--line);color:var(--muted);padding:8px 14px;border-radius:999px;cursor:pointer;font-size:12px;letter-spacing:.06em;text-transform:uppercase}
-.cats button.on,.cats button:hover{border-color:#fff;color:#fff}
-
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;padding:0 20px 80px;max-width:1280px;margin:0 auto}
-.item{position:relative;overflow:hidden;background:#111;min-height:280px;cursor:pointer}
-.item img{width:100%;height:100%;object-fit:cover;min-height:280px;transition:transform .6s}
-.item:hover img{transform:scale(1.06)}
-.item .meta{position:absolute;left:0;right:0;bottom:0;padding:16px;background:linear-gradient(transparent,rgba(0,0,0,.8))}
-.item h3{font-family:Syne,sans-serif;font-size:22px}
-.item small{color:var(--muted);letter-spacing:.1em;text-transform:uppercase;font-size:11px}
-
-.sheet{position:fixed;inset:0;z-index:40;background:rgba(7,7,10,.96);overflow:auto;transform:translateY(110%);transition:.45s}
-.sheet.open{transform:none}
-.sheet .inner{max-width:980px;margin:70px auto 80px;padding:0 24px}
-.sheet .heroimg{width:100%;max-height:52vh;object-fit:cover;background:#111}
-.close{position:fixed;top:16px;right:18px;z-index:41;background:transparent;border:1px solid #fff;color:#fff;padding:8px 12px;cursor:pointer}
-.soft{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
-.soft span{border:1px solid var(--line);padding:6px 10px;font-size:12px;color:var(--muted)}
-.sheet h2{font-family:Syne,sans-serif;font-size:42px;margin:8px 0}
-.sheet p{color:#c8c8d2;line-height:1.7;margin:10px 0}
-.gallery{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:18px 0}
-
-#about{padding:90px 24px;max-width:1100px;margin:0 auto;display:grid;grid-template-columns:.7fr 1.3fr;gap:48px;align-items:center}
-#about img{width:100%;background:#0b0b10;object-fit:contain}
-#about h2{font-family:Syne,sans-serif;font-size:48px}
-.bars{margin-top:22px}
-.bar{margin:10px 0}.bar b{display:flex;justify-content:space-between;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
-.bar i{display:block;height:3px;background:#222;margin-top:6px}.bar i em{display:block;height:100%;background:var(--acc)}
-
-#contact{padding:80px 24px 120px;text-align:center}
-#contact h2{font-family:Syne,sans-serif;font-size:56px}
-#contact a.mail{display:inline-block;margin-top:12px;font-size:22px;color:var(--acc)}
-.socials{display:flex;gap:16px;justify-content:center;margin-top:22px;color:var(--muted);font-size:13px;letter-spacing:.12em;text-transform:uppercase}
-footer{padding:24px;border-top:1px solid var(--line);color:var(--muted);font-size:12px;display:flex;justify-content:space-between}
-
-#reel{position:fixed;inset:0;z-index:50;background:#000;display:none;place-items:center}
-#reel.on{display:grid}
-#reel video{width:min(960px,92vw);max-height:70vh;background:#000}
-#reel .list{color:#aaa;margin-top:12px;font-size:13px;text-align:center}
-
+img{display:block;max-width:100%}
+nav{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;padding:16px 36px;background:rgba(11,6,24,.72);backdrop-filter:blur(14px);border-bottom:1px solid transparent}
+nav.scrolled{border-bottom-color:rgba(255,255,255,.08)}
+.brand{display:flex;align-items:center;gap:10px;font-weight:600}
+.brand img{width:36px;height:36px;border-radius:50%;object-fit:cover;border:1px solid var(--line)}
+nav ul{display:flex;gap:26px;list-style:none;font-size:12px;letter-spacing:.14em;color:var(--muted)}
+nav ul a:hover{color:#fff}
+.pill-gh{border:1px solid var(--line);padding:8px 14px;border-radius:999px;font-size:12px}
+#hero{min-height:92vh;display:grid;place-items:center;text-align:center;padding:80px 24px 60px}
+.badge{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:999px;padding:8px 14px;font-size:11px;letter-spacing:.14em;color:var(--lilac);margin-bottom:28px}
+.badge i{width:8px;height:8px;border-radius:50%;background:#6dffb0;box-shadow:0 0 10px #6dffb0}
+h1{font-family:"Playfair Display",serif;font-weight:500;font-size:clamp(52px,9vw,108px);line-height:.95}
+h1 em{display:block;font-style:italic;background:linear-gradient(90deg,#fff,var(--lilac));-webkit-background-clip:text;color:transparent}
+.role{margin-top:18px;font-size:22px;color:var(--lilac)}
+.role span{border-right:2px solid var(--lilac);padding-right:2px;animation:blink 1s step-end infinite}
+@keyframes blink{50%{border-color:transparent}}
+.lede{max-width:560px;margin:18px auto 0;color:var(--muted);line-height:1.7}
+.actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:32px}
+.btn{background:linear-gradient(180deg,#c4b5ff,#7c6bff);color:#fff;border:0;border-radius:999px;padding:14px 22px;font-weight:600;cursor:pointer}
+.btn.ghost{background:transparent;border:1px solid var(--line);color:#fff}
+.links{display:flex;gap:18px;justify-content:center;margin-top:28px;color:var(--muted);font-size:13px;flex-wrap:wrap}
+.links a{display:flex;align-items:center;gap:8px}
+.sec{padding:90px 36px;max-width:1120px;margin:0 auto}
+.k{color:var(--lilac);letter-spacing:.16em;font-size:12px;text-transform:uppercase}
+h2{font-family:"Playfair Display",serif;font-size:clamp(32px,4vw,48px);margin:8px 0 28px}
+.about{display:grid;grid-template-columns:.9fr 1.1fr;gap:40px;align-items:start}
+.card{background:rgba(18,12,36,.7);border:1px solid var(--line);border-radius:20px;padding:22px}
+.who{display:flex;gap:14px;align-items:center;margin-bottom:14px}
+.who img{width:56px;height:56px;border-radius:50%;object-fit:cover}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}
+.chips span{border:1px solid var(--line);border-radius:999px;padding:6px 10px;font-size:12px;color:var(--muted)}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:22px}
+.stats div{background:rgba(18,12,36,.7);border:1px solid var(--line);border-radius:16px;padding:16px}
+.stats b{display:block;font-size:22px;color:var(--lilac)}
+.stats span{font-size:12px;color:var(--muted)}
+.skills{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+.skills article{background:rgba(18,12,36,.7);border:1px solid var(--line);border-radius:18px;padding:20px}
+.skills h3{margin-bottom:8px}
+.skills p{color:var(--muted);font-size:14px;line-height:1.6;margin-bottom:12px}
+.projects{display:grid;gap:16px}
+.proj{display:grid;grid-template-columns:160px 1fr;gap:18px;background:rgba(18,12,36,.7);border:1px solid var(--line);border-radius:18px;overflow:hidden}
+.proj img{width:100%;height:140px;object-fit:cover}
+.proj h3{font-size:22px;margin:4px 0 8px}
+.proj p{color:var(--muted);font-size:14px;line-height:1.6}
+form{display:grid;gap:10px;max-width:520px}
+input,textarea{background:#0e0a1c;border:1px solid var(--line);border-radius:12px;padding:12px 14px;color:#fff;font-family:inherit}
+textarea{min-height:120px}
+footer{padding:28px 36px 50px;color:var(--muted);font-size:13px;display:flex;justify-content:space-between;border-top:1px solid var(--line)}
 @media(max-width:860px){
-  .grid,#about{grid-template-columns:1fr}
   nav ul{display:none}
+  .about,.skills,.proj,.stats{grid-template-columns:1fr}
 }
 </style>
 </head>
 <body>
-<canvas id="scene"></canvas>
-<div class="wrap">
-<nav>
-  <a class="logo" href="#hero">AS</a>
+<nav id="nav">
+  <a class="brand" href="#hero"><img src="images/avatar.png" alt=""/> AS</a>
   <ul>
-    <li><a href="#work">Work</a></li>
     <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
-  <a class="cta" href="mailto:aman0933sharma@gmail.com">Available</a>
+  <a class="pill-gh" href="mailto:aman0933sharma@gmail.com">Email</a>
 </nav>
 
 <section id="hero">
   <div>
-    <p class="title">Mechanical Engineer · 3D CAD · Surface</p>
-    <h1>Aman<span>Sharma</span></h1>
-    <div class="hero-act">
-      <a class="btn" href="#work">Explore Work</a>
-      <button class="btn ghost" id="openReel">Play showreel</button>
-      <button class="play" id="openReel2" aria-label="Play reel">▶</button>
+    <div class="badge"><i></i> Open to opportunities</div>
+    <h1>Aman <em>Sharma.</em></h1>
+    <p class="role"><span id="type">Mechanical Engineer</span></p>
+    <p class="lede">Designing, manufacturing and evaluating mechanical devices — CAD, CATIA and workshop practice from Hamirpur, Himachal Pradesh.</p>
+    <div class="actions">
+      <a class="btn" href="#projects">View Projects →</a>
+      <a class="btn ghost" href="#contact">Get in Touch</a>
+    </div>
+    <div class="links">
+      <a href="mailto:aman0933sharma@gmail.com">✉ aman0933sharma@gmail.com</a>
+      <span>📍 Hamirpur, HP</span>
     </div>
   </div>
 </section>
 
-<div class="cats" id="cats">
-  <button class="on" data-cat="all">All Work</button>
-  <button data-cat="product">Product Visualization</button>
-  <button data-cat="character">Assemblies</button>
-  <button data-cat="env">Environment / Shop</button>
-  <button data-cat="motion">Motion</button>
-  <button data-cat="personal">Personal Projects</button>
-</div>
-
-<section id="work" class="grid">
-  <article class="item" data-cat="personal product" data-id="rc">
-    <img src="images/rc-car.jpg" alt="RC Motor Car"/>
-    <div class="meta"><small>Personal · Prototype</small><h3>RC Motor Car</h3></div>
-  </article>
-  <article class="item" data-cat="product" data-id="engine">
-    <img src="images/engine.jpg" alt="Engine study"/>
-    <div class="meta"><small>Product Visualization</small><h3>Engine study</h3></div>
-  </article>
-  <article class="item" data-cat="env" data-id="lathe">
-    <img src="images/lathe.jpg" alt="Lathe"/>
-    <div class="meta"><small>Environment / Shop</small><h3>Lathe</h3></div>
-  </article>
-  <article class="item" data-cat="env" data-id="cnc">
-    <img src="images/cnc.jpg" alt="CNC"/>
-    <div class="meta"><small>Environment / Shop</small><h3>CNC</h3></div>
-  </article>
-  <article class="item" data-cat="character" data-id="cad">
-    <img src="images/cad.jpg" alt="CATIA"/>
-    <div class="meta"><small>Assemblies · CAD</small><h3>CATIA surfaces</h3></div>
-  </article>
-  <article class="item" data-cat="motion personal" data-id="reelp">
-    <img src="images/turn.jpg" alt="Motion study"/>
-    <div class="meta"><small>Motion</small><h3>Turn / motion study</h3></div>
-  </article>
-</section>
-
-<section id="about">
-  <img src="images/aman.png" alt="Aman Sharma"/>
-  <div>
-    <p class="title">About</p>
-    <h2>From Hamirpur, building parts that hold.</h2>
-    <p style="color:#c8c8d2;line-height:1.7;margin-top:14px">A diligent mechanical engineering graduate tasked with designing, manufacturing and evaluating mechanical devices. B.Tech 2019—2023, Landran, Mohali. Currently working at Introsoft Solution Pvt. Ltd.</p>
-    <div class="bars">
-      <div class="bar"><b>CATIA<em>Certified</em></b><i><em style="width:92%"></em></i></div>
-      <div class="bar"><b>CAD / Surface<em>Core</em></b><i><em style="width:88%"></em></i></div>
-      <div class="bar"><b>Workshop / Eval<em>Strong</em></b><i><em style="width:80%"></em></i></div>
-      <div class="bar"><b>Project mgmt<em>Working</em></b><i><em style="width:74%"></em></i></div>
+<section class="sec" id="about">
+  <p class="k">// About me</p>
+  <h2>A little about me</h2>
+  <div class="about">
+    <div class="card">
+      <div class="who"><img src="images/avatar.png" alt="Aman"/><div><strong>Aman Sharma</strong><br/><span style="color:var(--muted);font-size:13px">📍 Hamirpur, Himachal Pradesh · Active</span></div></div>
+      <div class="chips"><span>Mechanical</span><span>CATIA</span><span>CAD</span><span>Workshop</span></div>
+      <p style="color:var(--muted);line-height:1.7">“Crafting precise mechanical form with clean drawings and careful evaluation.”</p>
     </div>
-    <p style="margin-top:18px;color:var(--muted);font-size:13px">Languages: Hindi · English · Available: full-time at Introsoft · open to collaborations</p>
+    <div>
+      <p style="color:#d7d0ee;line-height:1.8">Hi, I’m Aman — a mechanical engineering graduate from Landran, Mohali (B.Tech 2019—2023). I work on CAD, surface intent and the evaluation of machines. Currently at Introsoft Solution Pvt. Ltd.</p>
+      <p style="color:var(--muted);line-height:1.8;margin-top:12px">Certified in CATIA at Parametric Cadtech Design Centre. Languages: Hindi · English.</p>
+      <div class="stats">
+        <div><b>2019–23</b><span>B.Tech ME</span></div>
+        <div><b>CATIA</b><span>Certified</span></div>
+        <div><b>Introsoft</b><span>Present</span></div>
+        <div><b>HP</b><span>Hamirpur</span></div>
+      </div>
+    </div>
   </div>
 </section>
 
-<section id="contact">
-  <p class="title">Commission status · employed</p>
-  <h2>Start a brief.</h2>
-  <a class="mail" href="mailto:aman0933sharma@gmail.com">aman0933sharma@gmail.com</a>
-  <p style="color:var(--muted);margin-top:10px">Hamirpur, Himachal Pradesh</p>
-  <div class="socials"><span>ArtStation</span><span>Behance</span><span>LinkedIn</span></div>
-</section>
-<footer><span>© 2026 Aman Sharma</span><span>3D / CAD portfolio</span></footer>
-</div>
-
-<button class="close" id="closeSheet" hidden>Close</button>
-<div class="sheet" id="sheet"><div class="inner" id="sheetInner"></div></div>
-
-<div id="reel">
-  <div>
-    <video src="images/reel.mp4" controls muted autoplay playsinline></video>
-    <div class="list">Featured: RC Motor Car · Engine · Lathe · CNC · CATIA</div>
-    <div style="text-align:center;margin-top:16px"><button class="btn ghost" id="closeReel">Close reel</button></div>
+<section class="sec" id="skills">
+  <p class="k">// Skills</p>
+  <h2>What I work with</h2>
+  <div class="skills">
+    <article><h3>Computer-Aided Design</h3><p>Parametric modelling and production-ready drawings.</p><div class="chips"><span>CAD</span><span>Drawings</span></div></article>
+    <article><h3>CATIA</h3><p>Certified modelling — fillets, splits, surface intent.</p><div class="chips"><span>CATIA</span><span>Surfaces</span></div></article>
+    <article><h3>Mechanical design</h3><p>Concept through fabrication and evaluation.</p><div class="chips"><span>Assemblies</span><span>Fit</span></div></article>
   </div>
-</div>
+</section>
 
-<script src="https://unpkg.com/three@0.160.1/build/three.min.js"></script>
+<section class="sec" id="projects">
+  <p class="k">// Projects</p>
+  <h2>Things I’ve built</h2>
+  <div class="projects">
+    <article class="proj"><img src="images/rc-car.jpg" alt="RC Motor Car"/><div style="padding:16px 16px 16px 0"><span class="k">01 · Prototype</span><h3>RC Motor Car</h3><p>College prototype: chassis, drive, fabrication drawings and test notes.</p><div class="chips"><span>Structure</span><span>Drive</span><span>Drawings</span></div></div></article>
+    <article class="proj"><img src="images/engine.jpg" alt="Engine"/><div style="padding:16px 16px 16px 0"><span class="k">02 · Machines</span><h3>Engine study</h3><p>Mechanical evaluation of assemblies and how parts read as a product.</p><div class="chips"><span>Engine</span><span>Assembly</span></div></div></article>
+    <article class="proj"><img src="images/cad.jpg" alt="CATIA"/><div style="padding:16px 16px 16px 0"><span class="k">03 · CAD</span><h3>CATIA surfaces</h3><p>Certified at Parametric Cadtech Design Centre.</p><div class="chips"><span>CATIA</span><span>Parting lines</span></div></div></article>
+    <article class="proj"><img src="images/lathe.jpg" alt="Lathe"/><div style="padding:16px 16px 16px 0"><span class="k">04 · Workshop</span><h3>Lathe &amp; CNC</h3><p>Hands-on fabrication and evaluation at the bench.</p><div class="chips"><span>Lathe</span><span>CNC</span></div></div></article>
+  </div>
+</section>
+
+<section class="sec" id="contact">
+  <p class="k">// Contact</p>
+  <h2>Let’s connect</h2>
+  <p style="color:var(--muted);margin-bottom:18px">Currently at Introsoft Solution Pvt. Ltd. Write if you have a brief.</p>
+  <p style="margin-bottom:18px"><a href="mailto:aman0933sharma@gmail.com" style="color:var(--lilac)">aman0933sharma@gmail.com</a> · Hamirpur, Himachal Pradesh</p>
+  <form onsubmit="event.preventDefault();location.href='mailto:aman0933sharma@gmail.com?subject='+encodeURIComponent(this.name.value)+'&body='+encodeURIComponent(this.msg.value)">
+    <input name="name" placeholder="Name" required/>
+    <input type="email" name="email" placeholder="Email" required/>
+    <textarea name="msg" placeholder="Message" required></textarea>
+    <button class="btn" type="submit">Send Message →</button>
+  </form>
+</section>
+<footer><span>© 2026 Aman Sharma</span><span>Hamirpur, HP</span></footer>
 <script>
-const projects={
-rc:{title:'RC Motor Car',year:'College',client:'Personal',soft:['CAD','Drawings','Workshop'],role:'Modeling, assembly, evaluation',img:'images/rc-car.jpg',cat:'Personal Projects',body:'College prototype exploring structure, drive and control. Built fabrication drawings and assembled the running concept.'},
-engine:{title:'Engine study',year:'Studio',client:'Study',soft:['CAD','Evaluation'],role:'Visualization, breakdown',img:'images/engine.jpg',cat:'Product Visualization',body:'Mechanical evaluation of an engine assembly — form, fit and how the parts read as a product.'},
-lathe:{title:'Lathe',year:'Workshop',client:'Practice',soft:['Workshop'],role:'Process',img:'images/lathe.jpg',cat:'Environment Art',body:'Bench work: turning, sparks, and the feel of a finished diameter.'},
-cnc:{title:'CNC',year:'Workshop',client:'Practice',soft:['CNC'],role:'Process',img:'images/cnc.jpg',cat:'Environment Art',body:'Precision cutting and production intent on the machine.'},
-cad:{title:'CATIA surfaces',year:'Certification',client:'Parametric Cadtech Design Centre',soft:['CATIA'],role:'Modeling, surfacing',img:'images/cad.jpg',cat:'Assemblies',body:'Certified CATIA. Fillets, parting lines and production-ready surface intent.'},
-reelp:{title:'Turn / motion study',year:'2026',client:'Personal',soft:['Lookdev'],role:'Lighting, motion',img:'images/turn.jpg',cat:'Motion Graphics',body:'Motion and lighting tests for mechanical form — how a body reads in time.'}
-};
-
-const sheet=document.getElementById('sheet'), inner=document.getElementById('sheetInner'), close=document.getElementById('closeSheet');
-function openP(id){
-  const p=projects[id]; if(!p) return;
-  inner.innerHTML=`<img class="heroimg" src="${p.img}" alt="${p.title}"/>
-    <p class="title" style="margin-top:18px">${p.cat} · ${p.year}</p>
-    <h2>${p.title}</h2>
-    <p>Client: ${p.client} · Role: ${p.role}</p>
-    <div class="soft">${p.soft.map(s=>`<span>${s}</span>`).join('')}</div>
-    <h3 style="margin-top:20px">Overview</h3>
-    <p>${p.body}</p>
-    <h3>Gallery</h3>
-    <div class="gallery"><img src="${p.img}" alt=""/><img src="images/cad.jpg" alt="WIP"/></div>`;
-  sheet.classList.add('open'); close.hidden=false;
-}
-close.onclick=()=>{sheet.classList.remove('open'); close.hidden=true};
-document.querySelectorAll('.item').forEach(el=>el.onclick=()=>openP(el.dataset.id));
-document.querySelectorAll('#cats button').forEach(b=>b.onclick=()=>{
-  document.querySelectorAll('#cats button').forEach(x=>x.classList.remove('on'));
-  b.classList.add('on');
-  const c=b.dataset.cat;
-  document.querySelectorAll('.item').forEach(it=>it.style.display=(c==='all'||it.dataset.cat.includes(c))?'':'none');
-});
-const reel=document.getElementById('reel');
-function openReel(){reel.classList.add('on'); const v=reel.querySelector('video'); v.currentTime=0; v.play().catch(()=>{});}
-document.getElementById('openReel').onclick=openReel;
-document.getElementById('openReel2').onclick=openReel;
-document.getElementById('closeReel').onclick=()=>{reel.classList.remove('on'); reel.querySelector('video').pause();};
-
-(function(){
-  if(!window.THREE) return;
-  const renderer=new THREE.WebGLRenderer({canvas:document.getElementById('scene'),antialias:true,alpha:true});
-  renderer.setPixelRatio(Math.min(devicePixelRatio,2));
-  renderer.setSize(innerWidth,innerHeight);
-  const scene=new THREE.Scene();
-  const camera=new THREE.PerspectiveCamera(40,innerWidth/innerHeight,.1,40);
-  camera.position.set(0,0,8);
-  scene.add(new THREE.AmbientLight(0xffffff,.4));
-  const l=new THREE.PointLight(0xff4d1c,40,20); l.position.set(3,2,4); scene.add(l);
-  const l2=new THREE.PointLight(0x7aa7ff,20,18); l2.position.set(-4,-1,3); scene.add(l2);
-  const mat=new THREE.MeshStandardMaterial({color:0x888898,metalness:.85,roughness:.25});
-  const g=new THREE.Group(); scene.add(g);
-  g.add(new THREE.Mesh(new THREE.TorusKnotGeometry(1.2,.28,180,24),mat));
-  const ring=new THREE.Mesh(new THREE.TorusGeometry(2.2,.02,8,80), new THREE.MeshBasicMaterial({color:0xff4d1c}));
-  g.add(ring);
-  addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight)});
-  (function tick(t){
-    g.rotation.y=t/4000; g.rotation.x=Math.sin(t/3000)*.2;
-    renderer.render(scene,camera); requestAnimationFrame(tick);
-  })(0);
-})();
+addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('scrolled',scrollY>20),{passive:true});
+const words=['Mechanical Engineer','CATIA Specialist','CAD Designer'];
+let wi=0,ci=0,del=false;
+const el=document.getElementById('type');
+setInterval(()=>{
+  const w=words[wi];
+  el.textContent=w.slice(0,ci);
+  if(!del){ci++; if(ci>w.length+12) del=true;}
+  else{ci--; if(ci===0){del=false; wi=(wi+1)%words.length;}}
+},80);
 </script>
 </body>
 </html>
