@@ -4,139 +4,98 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Aman Sharma — Mechanical Engineer</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <style>
-    :root { --rust:#b85a2a; --amber:#e09a4a; --ink:#d8cbb8; --bg:#070605; }
-    * { box-sizing: border-box; }
-    html, body { margin:0; background:var(--bg); color:var(--ink); font-family:"IM Fell English", Georgia, serif; }
-    html { scroll-snap-type: y mandatory; }
-    .chamber { position:relative; min-height:100vh; scroll-snap-align:start; overflow:hidden; perspective:1400px; }
-    .bg { position:absolute; inset:0; background-size:cover; background-position:center; filter:saturate(.85) contrast(1.05); transform:scale(1.04); }
-    .vignette { position:absolute; inset:0; pointer-events:none; z-index:3; background:radial-gradient(ellipse at center, transparent 36%, #050403 90%); }
-    .door { position:absolute; inset:0; z-index:4; transform-origin:left center; background-size:cover; background-position:center; box-shadow:18px 0 40px #000; transition:transform 1.5s cubic-bezier(.7,.05,.2,1); }
-    .chamber.in .door { transform:rotateY(-88deg); }
-    .rain { position:absolute; inset:0; z-index:5; pointer-events:none; background:repeating-linear-gradient(180deg, transparent 0 12px, rgba(180,200,210,.07) 13px 14px); animation:rain 1.1s linear infinite; mix-blend-mode:screen; opacity:.35; }
-    @keyframes rain { to { background-position:0 80px; } }
-    .carved { position:relative; z-index:6; min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:8vh 6vw; }
-    .carved p { letter-spacing:.38em; text-transform:uppercase; font-size:11px; color:#9a7b55; margin:0; }
-    .carved h1 { font-family:Cinzel,serif; font-size:clamp(2.4rem,8vw,5.4rem); letter-spacing:.12em; color:#cfc1a6; margin:10px 0 0; text-shadow:0 2px 0 #1a120a, 0 18px 40px #000; }
-    .carved em { letter-spacing:.28em; text-transform:uppercase; font-size:13px; color:var(--rust); font-style:normal; margin-top:8px; }
-    .arrow { width:1px; height:56px; margin:28px auto 0; background:linear-gradient(var(--rust), transparent); position:relative; animation:drip 2.2s ease-in-out infinite; }
-    .arrow:after { content:""; position:absolute; left:50%; bottom:-6px; width:8px; height:8px; border-right:1px solid var(--rust); border-bottom:1px solid var(--rust); transform:translateX(-50%) rotate(45deg); }
-    @keyframes drip { 50% { transform:translateY(8px); } }
-    .inner { position:relative; z-index:6; min-height:100vh; display:flex; align-items:center; justify-content:flex-end; padding:8vh 6vw; gap:4vw; }
-    .figure { height:min(78vh,720px); width:auto; object-fit:contain; filter:drop-shadow(0 20px 40px #000); }
-    .works { display:flex; gap:18px; flex-wrap:wrap; max-width:46vw; }
-    .works img { width:220px; height:150px; object-fit:cover; border:1px solid #5a3a22; box-shadow:0 16px 40px #000; }
-    .slab { width:min(380px,86vw); padding:28px 26px 30px; color:#2c2116; background:linear-gradient(180deg,rgba(40,28,16,.18),rgba(20,12,8,.12)), url("castle/parchment.jpg") center/cover; box-shadow:0 20px 50px rgba(0,0,0,.55); }
-    .slab .k { margin:0 0 8px; font-size:11px; letter-spacing:.32em; text-transform:uppercase; color:#7a3d1c; }
-    .slab h2 { margin:0; font-family:Cinzel,serif; font-size:clamp(1.6rem,4vw,2.4rem); color:#1c140e; }
-    .slab .b { margin:12px 0 0; font-size:17px; line-height:1.45; color:#3a2a1c; }
-    .slab a { display:inline-block; margin-top:16px; color:#7a3d1c; }
-    @media (max-width:700px) {
-      .inner { flex-direction:column; justify-content:flex-end; padding-bottom:4vh; }
-      .works { max-width:100%; }
-      .figure { height:46vh; }
-    }
+    html, body { margin:0; background:#0c0d10; color:#f3f1ec; font-family:Outfit,sans-serif; }
+    .studio { min-height:100dvh; display:grid; grid-template-columns:1.1fr .9fr; }
+    #stage { min-height:100dvh; background:radial-gradient(ellipse at 40% 40%, #1a1d24, #0c0d10 70%); }
+    .copy { padding:12vh 7vw 10vh; display:flex; flex-direction:column; justify-content:center; }
+    .kicker { margin:0; letter-spacing:.22em; text-transform:uppercase; font-size:11px; color:#c4a056; }
+    h1 { margin:12px 0 0; font-weight:500; font-size:clamp(2.6rem,5vw,4.4rem); letter-spacing:-.04em; line-height:.95; }
+    .lead { margin:18px 0 0; max-width:36ch; font-size:17px; line-height:1.5; color:#b7b3aa; }
+    section { margin-top:28px; max-width:42ch; }
+    h2 { margin:0; font-size:13px; letter-spacing:.18em; text-transform:uppercase; color:#c4a056; font-weight:500; }
+    section p { margin:8px 0 0; font-size:16px; line-height:1.5; color:#cfcbc3; }
+    a { color:#f3f1ec; text-decoration:none; border-bottom:1px solid #c4a056; }
+    @media (max-width:860px){ .studio{grid-template-columns:1fr} #stage{min-height:58vh} .copy{padding:6vh 7vw 10vh} }
   </style>
 </head>
 <body>
-  <section class="chamber in" id="gate">
-    <div class="bg" style="background-image:url('castle/courtyard.jpg')"></div>
-    <div class="vignette"></div>
-    <div class="rain"></div>
-    <header class="carved">
-      <p>A decayed fortress · night</p>
-      <h1>Aman Sharma</h1>
-      <em>Mechanical Engineer</em>
-      <span class="arrow"></span>
-    </header>
-  </section>
-  <section class="chamber" id="intro">
-    <div class="bg" style="background-image:url('castle/corridor.jpg')"></div>
-    <div class="door" style="background-image:url('castle/door.jpg')"></div>
-    <div class="vignette"></div>
-    <div class="inner">
-      <img class="figure" src="aman-stand.png" alt="Aman Sharma" />
-      <aside class="slab">
-        <p class="k">The threshold</p>
-        <h2>Hi I am Aman</h2>
-        <p class="b">Designing, manufacturing and evaluating mechanical devices. From Hamirpur, Himachal Pradesh. Surfaces that hold. Drawings that read.</p>
-      </aside>
-    </div>
-  </section>
-  <section class="chamber" id="work">
-    <div class="bg" style="background-image:url('castle/war-room.jpg')"></div>
-    <div class="door" style="background-image:url('castle/door.jpg')"></div>
-    <div class="vignette"></div>
-    <div class="inner">
-      <aside class="slab">
-        <p class="k">The war room</p>
+  <div class="studio">
+    <div id="stage"></div>
+    <main class="copy">
+      <p class="kicker">Mechanical Engineer · CAD · CATIA</p>
+      <h1>Hi I am Aman</h1>
+      <p class="lead">From Hamirpur, Himachal Pradesh. I design, manufacture and evaluate mechanical devices.</p>
+      <section>
         <h2>Work</h2>
-        <p class="b">Introsoft Solution Pvt. Ltd. — present. Mechanical design, CAD, surface intent, drawings, evaluation of machines.</p>
-      </aside>
-    </div>
-  </section>
-  <section class="chamber" id="edu">
-    <div class="bg" style="background-image:url('castle/library.jpg')"></div>
-    <div class="door" style="background-image:url('castle/door.jpg')"></div>
-    <div class="vignette"></div>
-    <div class="inner">
-      <aside class="slab">
-        <p class="k">The chapel library</p>
+        <p>Introsoft Solution Pvt. Ltd. — present. Mechanical design, CAD, surface intent, drawings.</p>
+      </section>
+      <section>
         <h2>Education</h2>
-        <p class="b">B.Tech Mechanical Engineering, 2019—2023. Chandigarh Engineering College, Landran, Mohali. CATIA — Parametric Cadtech Design Centre.</p>
-      </aside>
-    </div>
-  </section>
-  <section class="chamber" id="skills">
-    <div class="bg" style="background-image:url('castle/armory.jpg')"></div>
-    <div class="door" style="background-image:url('castle/door.jpg')"></div>
-    <div class="vignette"></div>
-    <div class="inner">
-      <aside class="slab">
-        <p class="k">The armory</p>
-        <h2>Craft</h2>
-        <p class="b">CAD drawings. CATIA surfaces. Lathe. CNC. Fillets, splits, parting lines. Shop evaluation.</p>
-      </aside>
-    </div>
-  </section>
-  <section class="chamber" id="projects">
-    <div class="bg" style="background-image:url('castle/vault.jpg')"></div>
-    <div class="door" style="background-image:url('castle/door.jpg')"></div>
-    <div class="vignette"></div>
-    <div class="inner">
-      <div class="works">
-        <img src="rc-car.jpg" alt="RC Motor Car" />
-        <img src="engine.jpg" alt="Engine study" />
-      </div>
-      <aside class="slab">
-        <p class="k">The vaults</p>
-        <h2>Works sealed</h2>
-        <p class="b">RC Motor Car — chassis, drive, fabrication drawings. Engine study — assemblies as product, form and fit.</p>
-      </aside>
-    </div>
-  </section>
-  <section class="chamber" id="contact">
-    <div class="bg" style="background-image:url('castle/contact.jpg')"></div>
-    <div class="door" style="background-image:url('castle/door.jpg')"></div>
-    <div class="vignette"></div>
-    <div class="inner">
-      <aside class="slab">
-        <p class="k">The last door</p>
-        <h2>A letter</h2>
-        <p class="b">Hamirpur, Himachal Pradesh</p>
-        <a href="mailto:aman0933sharma@gmail.com">aman0933sharma@gmail.com</a>
-      </aside>
-    </div>
-  </section>
-  <script>
-    const chambers = [...document.querySelectorAll('.chamber')];
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach((e) => { if (e.isIntersecting) e.target.classList.add('in'); });
-    }, { threshold: 0.45 });
-    chambers.forEach((c, i) => { if (i) io.observe(c); });
+        <p>B.Tech Mechanical Engineering, 2019—2023. Chandigarh Engineering College, Landran, Mohali. CATIA — Parametric Cadtech Design Centre.</p>
+      </section>
+      <section>
+        <h2>Contact</h2>
+        <p>Hamirpur, Himachal Pradesh<br /><a href="mailto:aman0933sharma@gmail.com">aman0933sharma@gmail.com</a></p>
+      </section>
+    </main>
+  </div>
+  <script type="importmap">
+    { "imports": { "three": "https://unpkg.com/three@0.169.0/build/three.module.js" } }
+  </script>
+  <script type="module">
+    import * as THREE from "three";
+    const el = document.getElementById("stage");
+    const webgl = new THREE.WebGLRenderer({ antialias:true, alpha:true });
+    webgl.setPixelRatio(Math.min(devicePixelRatio, 2));
+    webgl.setClearColor(0x000000, 0);
+    el.appendChild(webgl.domElement);
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(42, 1, 0.1, 40);
+    camera.position.set(0, 0.2, 6.2);
+    scene.add(new THREE.AmbientLight(0xffffff, 0.7));
+    const key = new THREE.PointLight(0xffffff, 18, 20);
+    key.position.set(3, 3, 5);
+    scene.add(key);
+    const loader = new THREE.TextureLoader();
+    const load = (u) => new Promise((r) => loader.load(u, r));
+    const [aman, car, engine] = await Promise.all([
+      load("aman-stand.png"), load("rc-car.jpg"), load("engine.jpg")
+    ]);
+    const plane = (tex, w, h, alpha) => new THREE.Mesh(
+      new THREE.PlaneGeometry(w, h),
+      new THREE.MeshBasicMaterial({ map: tex, transparent: alpha, depthWrite: !alpha })
+    );
+    const portrait = plane(aman, 1.7, 2.9, true); portrait.position.set(1.7, -0.15, 0); scene.add(portrait);
+    const rc = plane(car, 1.9, 1.15, false); rc.position.set(-2.1, 0.85, -0.4); scene.add(rc);
+    const eng = plane(engine, 1.55, 1.15, false); eng.position.set(-1.7, -1.05, 0.2); scene.add(eng);
+    const target = { x:0, y:0 };
+    window.addEventListener("pointermove", (e) => {
+      target.x = (e.clientX / innerWidth - 0.5) * 0.6;
+      target.y = (e.clientY / innerHeight - 0.5) * 0.3;
+    });
+    function size() {
+      const w = el.clientWidth, h = Math.max(1, el.clientHeight);
+      camera.aspect = w / h; camera.updateProjectionMatrix();
+      webgl.setSize(w, h, false);
+    }
+    size(); window.addEventListener("resize", size);
+    function tick(t) {
+      const s = t * 0.001;
+      portrait.rotation.y = Math.sin(s * 0.5) * 0.12;
+      portrait.position.y = -0.15 + Math.sin(s * 0.8) * 0.06;
+      rc.rotation.y = s * 0.25;
+      rc.position.y = 0.85 + Math.sin(s * 0.9 + 1) * 0.08;
+      eng.rotation.y = -s * 0.4;
+      eng.position.y = -1.05 + Math.cos(s * 0.7) * 0.07;
+      camera.position.x += (target.x - camera.position.x) * 0.04;
+      camera.position.y += (0.2 - target.y - camera.position.y) * 0.04;
+      camera.lookAt(0, 0, 0);
+      webgl.render(scene, camera);
+      requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
   </script>
 </body>
 </html>
